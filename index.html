@@ -4,22 +4,23 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
 
 <meta name="theme-color" content="#ffffff">
 
 <title>H-LINK | 해운대경찰서 스마트 업무지원</title>
-      
-<!-- H-LINK PWA -->
-<link rel="manifest" href="manifest.json">
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="H-LINK">
-<link rel="apple-touch-icon" href="icon-512.png">      
+
+<link rel="apple-touch-icon" href="./icon-512.png">
 
 <style>
 
@@ -49,22 +50,14 @@ body{
     justify-content:center;
 }
 
-/* =========================
-   전체 앱
-========================= */
-
 #app{
     position:relative;
     width:100%;
     max-width:1080px;
     min-height:100vh;
-    background:white;
+    background:#ffffff;
     overflow-x:hidden;
 }
-
-/* =========================
-   페이지
-========================= */
 
 .page{
     display:none;
@@ -78,8 +71,6 @@ body{
     display:block;
 }
 
-/* 이미지 길이가 달라도 자동 대응 */
-
 .page-image{
     display:block;
     width:100%;
@@ -87,45 +78,30 @@ body{
     margin:0;
     padding:0;
     border:0;
+    user-select:none;
+    -webkit-user-drag:none;
 }
-
-/* =========================
-   투명 터치 영역
-========================= */
 
 .hotspot{
     position:absolute;
     z-index:20;
-
     display:block;
-
     margin:0;
     padding:0;
-
     border:0;
-
     background:rgba(255,255,255,0);
-
     cursor:pointer;
     touch-action:manipulation;
-
-    text-decoration:none;
 }
 
 .hotspot:active{
     background:rgba(30,100,210,.08);
 }
 
-/* =========================
-   이전 버튼
-========================= */
-
 .back-button{
     position:fixed;
-
     left:14px;
     top:14px;
-
     z-index:100;
 
     border:0;
@@ -133,34 +109,27 @@ body{
 
     padding:10px 16px;
 
-    background:rgba(255,255,255,.94);
-
+    background:rgba(255,255,255,.95);
     color:#174a87;
 
     font-size:15px;
     font-weight:700;
 
-    box-shadow:
-    0 3px 12px rgba(0,0,0,.18);
+    box-shadow:0 3px 12px rgba(0,0,0,.18);
 
     cursor:pointer;
 }
 
-#home .back-button,
-#district-main .back-button{
+#home .back-button{
     display:none;
 }
-
-/* 작은 화면 */
 
 @media(max-width:480px){
 
     .back-button{
         top:10px;
         left:10px;
-
         padding:8px 13px;
-
         font-size:13px;
     }
 }
@@ -168,154 +137,286 @@ body{
 </style>
 </head>
 
-
 <body>
 
 <div id="app">
 
 
 <!-- =====================================================
-     유관기관 메인
+     H-LINK 메인
 ===================================================== -->
 
-<section id="district-main"
-         class="page active">
+<section id="home" class="page active">
 
-    <img
-        src="district_main.png"
-        class="page-image"
-        alt="유관기관 연락처">
-
-
-    <!-- ① 해운대구청 -->
-
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:25%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-office')">
-    </button>
+<img
+src="./home.png"
+class="page-image"
+alt="H-LINK 해운대경찰서 스마트 업무지원">
 
 
-    <!-- ② 동 행정복지센터 -->
+<!-- 01 경찰서 부서별 업무연락처 -->
 
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:33%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-dong')">
-    </button>
-
-
-    <!-- ③ 보건·의료기관 -->
-
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:41%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-health')">
-    </button>
+<button
+class="hotspot"
+aria-label="경찰서 부서별 업무연락처"
+style="
+left:3.3%;
+top:42.8%;
+width:43.8%;
+height:14.8%;
+"
+onclick="openPage('departments')">
+</button>
 
 
-    <!-- ④ 소방서 -->
+<!-- 02 지역관서 연락처 -->
 
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:49%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-fire')">
-    </button>
-
-
-    <!-- ⑤ 보호·응급지원기관 -->
-
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:57%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-support')">
-    </button>
+<button
+class="hotspot"
+aria-label="지역관서 연락처"
+style="
+left:48.5%;
+top:42.8%;
+width:47.5%;
+height:14.8%;
+"
+onclick="openPage('local')">
+</button>
 
 
-    <!-- ⑥ 교통·도로기관 -->
+<!-- 03 유관기관 연락처 -->
 
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:65%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-traffic')">
-    </button>
-
-
-    <!-- ⑦ 공공·업무 유관기관 -->
-
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:73%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-public')">
-    </button>
+<button
+class="hotspot"
+aria-label="유관기관 연락처"
+style="
+left:3.3%;
+top:58.2%;
+width:43.8%;
+height:14.7%;
+"
+onclick="openPage('district-main')">
+</button>
 
 
-    <!-- ⑧ 다중이용시설 -->
+<!-- 04 고장 수리 -->
 
-    <button
-        class="hotspot"
-        style="
-        left:7%;
-        top:81%;
-        width:86%;
-        height:7%;
-        "
-        onclick="openPage('district-facilities')">
-    </button>
+<button
+class="hotspot"
+aria-label="고장 수리"
+style="
+left:48.5%;
+top:58.2%;
+width:47.5%;
+height:14.7%;
+"
+onclick="openPage('repair')">
+</button>
 
 </section>
 
 
 
 <!-- =====================================================
-     ① 해운대구청
+     01 경찰서 부서별
 ===================================================== -->
 
-<section id="district-office"
-         class="page">
+<section id="departments" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_office.png"
+src="./departments.png"
+class="page-image"
+alt="경찰서 부서별 업무연락처">
+
+</section>
+
+
+
+<!-- =====================================================
+     02 지역관서
+===================================================== -->
+
+<section id="local" class="page">
+
+<button class="back-button" onclick="goBack()">
+← 이전으로
+</button>
+
+<img
+src="./local.png"
+class="page-image"
+alt="지역관서 연락처">
+
+</section>
+
+
+
+<!-- =====================================================
+     03 유관기관 메인
+===================================================== -->
+
+<section id="district-main" class="page">
+
+<button class="back-button" onclick="goBack()">
+← 이전으로
+</button>
+
+<img
+src="./district.png"
+class="page-image"
+alt="유관기관 연락처">
+
+
+<!-- ① 해운대구청 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:25%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-office')">
+</button>
+
+
+<!-- ② 동 행정복지센터 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:33%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-dong')">
+</button>
+
+
+<!-- ③ 보건 의료기관 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:41%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-health')">
+</button>
+
+
+<!-- ④ 소방서 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:49%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-fire')">
+</button>
+
+
+<!-- ⑤ 보호 응급지원기관 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:57%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-support')">
+</button>
+
+
+<!-- ⑥ 교통 도로기관 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:65%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-traffic')">
+</button>
+
+
+<!-- ⑦ 공공 업무 유관기관 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:73%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-public')">
+</button>
+
+
+<!-- ⑧ 다중이용시설 -->
+
+<button
+class="hotspot"
+style="
+left:7%;
+top:81%;
+width:86%;
+height:7%;
+"
+onclick="openPage('district-facilities')">
+</button>
+
+</section>
+
+
+
+<!-- =====================================================
+     04 고장 수리
+===================================================== -->
+
+<section id="repair" class="page">
+
+<button class="back-button" onclick="goBack()">
+← 이전으로
+</button>
+
+<img
+src="./repair.png"
+class="page-image"
+alt="고장 수리">
+
+</section>
+
+
+
+<!-- =====================================================
+     유관기관 ① 해운대구청
+===================================================== -->
+
+<section id="district-office" class="page">
+
+<button class="back-button" onclick="goBack()">
+← 이전으로
+</button>
+
+<img
+src="./district_office.png"
 class="page-image"
 alt="해운대구청">
 
@@ -324,19 +425,17 @@ alt="해운대구청">
 
 
 <!-- =====================================================
-     ② 동 행정복지센터
+     유관기관 ② 동 행정복지센터
 ===================================================== -->
 
-<section id="district-dong"
-         class="page">
+<section id="district-dong" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_dong.png"
+src="./district_dong.png"
 class="page-image"
 alt="동 행정복지센터">
 
@@ -345,19 +444,17 @@ alt="동 행정복지센터">
 
 
 <!-- =====================================================
-     ③ 보건·의료기관
+     유관기관 ③ 보건 의료기관
 ===================================================== -->
 
-<section id="district-health"
-         class="page">
+<section id="district-health" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_health.png"
+src="./district_health.png"
 class="page-image"
 alt="보건 의료기관">
 
@@ -366,19 +463,17 @@ alt="보건 의료기관">
 
 
 <!-- =====================================================
-     ④ 소방서
+     유관기관 ④ 소방서
 ===================================================== -->
 
-<section id="district-fire"
-         class="page">
+<section id="district-fire" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_fire.png"
+src="./district_fire.png"
 class="page-image"
 alt="소방서">
 
@@ -387,19 +482,17 @@ alt="소방서">
 
 
 <!-- =====================================================
-     ⑤ 보호·응급지원기관
+     유관기관 ⑤ 보호 응급지원기관
 ===================================================== -->
 
-<section id="district-support"
-         class="page">
+<section id="district-support" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_support.png"
+src="./district_support.png"
 class="page-image"
 alt="보호 응급지원기관">
 
@@ -408,19 +501,17 @@ alt="보호 응급지원기관">
 
 
 <!-- =====================================================
-     ⑥ 교통·도로기관
+     유관기관 ⑥ 교통 도로기관
 ===================================================== -->
 
-<section id="district-traffic"
-         class="page">
+<section id="district-traffic" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_traffic.png"
+src="./district_traffic.png"
 class="page-image"
 alt="교통 도로기관">
 
@@ -429,19 +520,17 @@ alt="교통 도로기관">
 
 
 <!-- =====================================================
-     ⑦ 공공·업무 유관기관
+     유관기관 ⑦ 공공 업무 유관기관
 ===================================================== -->
 
-<section id="district-public"
-         class="page">
+<section id="district-public" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_public.png"
+src="./district_public.png"
 class="page-image"
 alt="공공 업무 유관기관">
 
@@ -450,19 +539,17 @@ alt="공공 업무 유관기관">
 
 
 <!-- =====================================================
-     ⑧ 다중이용시설
+     유관기관 ⑧ 다중이용시설
 ===================================================== -->
 
-<section id="district-facilities"
-         class="page">
+<section id="district-facilities" class="page">
 
-<button class="back-button"
-        onclick="goBack()">
+<button class="back-button" onclick="goBack()">
 ← 이전으로
 </button>
 
 <img
-src="district_facilities.png"
+src="./district_facilities.png"
 class="page-image"
 alt="다중이용시설">
 
@@ -472,21 +559,24 @@ alt="다중이용시설">
 </div>
 
 
-
 <script>
 
-/* ==========================================
-   페이지 이동 기록
-========================================== */
+/* 페이지 이동 기록 */
 
 let pageHistory = [];
 
 
-/* ==========================================
-   페이지 열기
-========================================== */
+/* 페이지 열기 */
 
 function openPage(pageId){
+
+    const next =
+        document.getElementById(pageId);
+
+    if(!next){
+        console.error("페이지를 찾을 수 없습니다:", pageId);
+        return;
+    }
 
     const current =
         document.querySelector(".page.active");
@@ -498,24 +588,13 @@ function openPage(pageId){
         current.classList.remove("active");
     }
 
-    const next =
-        document.getElementById(pageId);
-
-    if(!next) return;
-
     next.classList.add("active");
 
-    window.scrollTo({
-        top:0,
-        left:0,
-        behavior:"instant"
-    });
+    window.scrollTo(0,0);
 }
 
 
-/* ==========================================
-   이전 페이지
-========================================== */
+/* 이전으로 */
 
 function goBack(){
 
@@ -527,7 +606,7 @@ function goBack(){
     }
 
     const previous =
-        pageHistory.pop() || "district-main";
+        pageHistory.pop() || "home";
 
     const page =
         document.getElementById(previous);
@@ -536,52 +615,41 @@ function goBack(){
         page.classList.add("active");
     }
 
-    window.scrollTo({
-        top:0,
-        left:0,
-        behavior:"instant"
-    });
+    window.scrollTo(0,0);
 }
 
 
-/* ==========================================
-   휴대폰 뒤로가기 대응
-========================================== */
+/* 이미지 드래그 방지 */
 
-window.addEventListener(
-    "popstate",
-    function(){
+document.querySelectorAll("img").forEach(function(img){
 
-        if(pageHistory.length){
-            goBack();
-        }
-    }
-);
-
-
-/* ==========================================
-   이미지 드래그 방지
-========================================== */
-
-document.querySelectorAll("img")
-.forEach(function(img){
-
-    img.setAttribute(
-        "draggable",
-        "false"
-    );
+    img.setAttribute("draggable","false");
 
 });
 
 
+/* 서비스워커 */
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener("load",function(){
+
+        navigator.serviceWorker
+        .register("./sw.js")
+        .catch(function(error){
+
+            console.log(
+                "Service Worker error:",
+                error
+            );
+
+        });
+
+    });
+
+}
+
 </script>
 
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("./sw.js");
-  });
-}
-</script>      
 </body>
 </html>

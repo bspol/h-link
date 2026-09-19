@@ -2,8 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#123a8f">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ffffff">
 
   <title>H-LINK | 해운대경찰서 스마트 업무지원</title>
 
@@ -13,476 +14,77 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    body {
+    html, body {
       margin: 0;
-      font-family: Arial, "Noto Sans KR", sans-serif;
-      background:
-        linear-gradient(180deg,
-          #eef6ff 0%,
-          #f7f4ff 48%,
-          #eef7ff 100%);
-      color: #10265d;
-    }
-
-    .wrap {
+      padding: 0;
       width: 100%;
-      max-width: 720px;
-      min-height: 100vh;
-      margin: 0 auto;
-      padding-bottom: 40px;
+      min-height: 100%;
+      background: #eef3f8;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        "Malgun Gothic",
+        sans-serif;
     }
 
-    /* 상단 */
-    .hero {
-      padding: 46px 24px 34px;
-      text-align: center;
-      background:
-        linear-gradient(135deg,
-          #163b91 0%,
-          #5369cf 52%,
-          #8c5bd5 100%);
-      color: white;
-      border-radius: 0 0 38px 38px;
-      box-shadow: 0 8px 24px rgba(35,57,125,.20);
-    }
-
-    .brand {
-      font-size: 46px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      margin-bottom: 5px;
-    }
-
-    .station {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .english {
-      font-size: 12px;
-      opacity: .88;
-      letter-spacing: 1.2px;
-    }
-
-    .slogan {
-      margin-top: 20px;
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    /* 검색 */
-    .search-area {
-      padding: 22px 20px 8px;
-    }
-
-    .search-box {
+    body {
       display: flex;
-      background: white;
-      border: 2px solid #d8ddf4;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 5px 16px rgba(32,56,120,.10);
+      justify-content: center;
     }
 
-    #searchInput {
-      flex: 1;
-      min-width: 0;
-      border: none;
-      outline: none;
-      padding: 18px;
-      font-size: 16px;
-      color: #1a2d61;
-    }
-
-    .search-btn {
-      border: none;
-      min-width: 92px;
-      padding: 0 18px;
-      background: linear-gradient(135deg,#445fd2,#713ac8);
-      color: white;
-      font-size: 17px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .hint {
-      padding: 9px 6px 0;
-      font-size: 13px;
-      color: #697594;
-    }
-
-    /* 메뉴 */
-    .menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      padding: 18px 20px;
-    }
-
-    .card {
+    #app {
       position: relative;
-      min-height: 220px;
-      padding: 23px 19px;
-      border-radius: 25px;
-      text-decoration: none;
-      color: #10265d;
-      background: white;
-      border: 1px solid #e1e6f5;
-      box-shadow: 0 7px 18px rgba(30,51,112,.10);
-      transition: transform .12s ease;
+      width: 100%;
+      max-width: 1080px;
+      min-height: 100vh;
+      background: #ffffff;
+      overflow-x: hidden;
     }
 
-    .card:active {
-      transform: scale(.98);
-    }
-
-    .number {
-      font-size: 17px;
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 17px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 29px;
-      color: white;
-      margin-bottom: 15px;
-    }
-
-    .card h2 {
-      font-size: 22px;
-      line-height: 1.25;
-      margin: 0 0 8px;
-      letter-spacing: -1px;
-    }
-
-    .card p {
-      font-size: 14px;
-      line-height: 1.55;
-      margin: 0;
-      color: #53617e;
-    }
-
-    .arrow {
-      position: absolute;
-      right: 17px;
-      bottom: 17px;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 27px;
-      font-weight: 700;
-    }
-
-    .purple .icon,
-    .purple .arrow {
-      background: #7440c6;
-    }
-
-    .blue .icon,
-    .blue .arrow {
-      background: #2784dc;
-    }
-
-    .green .icon,
-    .green .arrow {
-      background: #159a87;
-    }
-
-    .orange .icon,
-    .orange .arrow {
-      background: #ec8a24;
-    }
-
-    .purple .number { color:#7440c6; }
-    .blue .number   { color:#2784dc; }
-    .green .number  { color:#159a87; }
-    .orange .number { color:#ec8a24; }
-
-    /* 하단 */
-    .footer {
-      margin: 15px 20px 0;
-      padding: 24px 15px;
-      text-align: center;
-      border-top: 1px solid #ccd7ef;
-    }
-
-    .footer-title {
-      font-size: 21px;
-      font-weight: 900;
-    }
-
-    .footer-eng {
-      font-size: 11px;
-      margin-top: 4px;
-      color: #66738e;
-    }
-
-    .footer-slogan {
-      margin-top: 15px;
-      font-size: 15px;
-      font-weight: 700;
-      color: #344c86;
-    }
-
-    /* 검색 결과 */
-    #searchResult {
+    .page {
       display: none;
-      margin: 6px 20px 10px;
-      padding: 16px;
-      background: white;
-      border-radius: 17px;
-      border: 1px solid #dce3f4;
-      font-size: 14px;
-      line-height: 1.6;
+      position: relative;
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
 
-    @media (max-width: 520px) {
-      .brand {
-        font-size: 39px;
-      }
-
-      .station {
-        font-size: 19px;
-      }
-
-      .menu {
-        gap: 10px;
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      .card {
-        min-height: 215px;
-        padding: 19px 14px;
-      }
-
-      .card h2 {
-        font-size: 19px;
-      }
-
-      .card p {
-        font-size: 13px;
-      }
-
-      .search-area {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<div class="wrap">
-
-  <header class="hero">
-    <div class="brand">H-LINK</div>
-    <div class="station">해운대경찰서</div>
-    <div class="english">HAEUNDAE POLICE STATION</div>
-
-    <div class="slogan">
-      빠르게 찾고, 바로 연결되는 스마트 업무지원 플랫폼
-    </div>
-  </header>
-
-
-  <section class="search-area">
-    <div class="search-box">
-
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="어떤 업무를 찾으세요?"
-        onkeydown="if(event.key==='Enter') searchMenu();"
-      >
-
-      <button class="search-btn" onclick="searchMenu()">
-        검색
-      </button>
-
-    </div>
-
-    <div class="hint">
-      기관명 또는 업무명을 입력하세요.
-    </div>
-  </section>
-
-  <div id="searchResult"></div>
-
-
-  <main class="menu">
-
-    <a class="card purple" href="departments.html"
-       data-keywords="경찰서 부서 업무 연락처 경무 수사 형사 교통 여성청소년 범죄예방 경비 치안정보">
-
-      <div class="number">01</div>
-      <div class="icon">☎</div>
-
-      <h2>경찰서 부서별<br>업무연락처</h2>
-
-      <p>
-        부서별 담당업무와<br>
-        업무전화 바로 연결
-      </p>
-
-      <div class="arrow">›</div>
-    </a>
-
-
-    <a class="card blue" href="local.html"
-       data-keywords="지역관서 지구대 파출소 재송 반여 우동 중동 좌동 반송 반석 송정">
-
-      <div class="number">02</div>
-      <div class="icon">★</div>
-
-      <h2>지역관서<br>연락처</h2>
-
-      <p>
-        지구대·파출소<br>
-        업무연락처
-      </p>
-
-      <div class="arrow">›</div>
-    </a>
-
-
-    <a class="card green" href="agencies.html"
-       data-keywords="유관기관 행정기관 구청 복지센터 보건소 병원 소방서 도로 교통 교육청 검찰 벡스코 누리마루">
-
-      <div class="number">03</div>
-      <div class="icon">↔</div>
-
-      <h2>유관기관<br>연락처</h2>
-
-      <p>
-        현장 업무에 필요한<br>
-        외부기관 바로 연결
-      </p>
-
-      <div class="arrow">›</div>
-    </a>
-
-
-    <a class="card orange" href="repair.html"
-       data-keywords="고장 수리 장비 순찰차 무전기 컴퓨터 프린터 CCTV 블랙박스 경광등 차량">
-
-      <div class="number">04</div>
-      <div class="icon">⚙</div>
-
-      <h2>고장·수리</h2>
-
-      <p>
-        순찰차·장비·통신·전산<br>
-        고장 접수 연락처
-      </p>
-
-      <div class="arrow">›</div>
-    </a>
-
-  </main>
-
-
-  <footer class="footer">
-
-    <div class="footer-title">
-      해운대경찰서
-    </div>
-
-    <div class="footer-eng">
-      HAEUNDAE POLICE STATION
-    </div>
-
-    <div class="footer-slogan">
-      든든한 동료, 더 안전한 해운대
-    </div>
-
-  </footer>
-
-</div>
-
-
-<script>
-
-function searchMenu() {
-
-  const input =
-    document.getElementById("searchInput")
-    .value
-    .trim()
-    .toLowerCase();
-
-  const result =
-    document.getElementById("searchResult");
-
-  if (!input) {
-    result.style.display = "block";
-    result.innerHTML =
-      "찾으려는 기관명 또는 업무명을 입력해주세요.";
-    return;
-  }
-
-  const cards =
-    document.querySelectorAll(".card");
-
-  const found = [];
-
-  cards.forEach(card => {
-
-    const text =
-      (card.innerText + " " +
-      card.dataset.keywords)
-      .toLowerCase();
-
-    if (text.includes(input)) {
-      found.push(card);
+    .page.active {
+      display: block;
     }
 
-  });
+    .page-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
 
-  if (found.length === 1) {
+    /*
+      투명 터치영역
+    */
+    .hotspot {
+      position: absolute;
+      display: block;
+      z-index: 10;
+      cursor: pointer;
+      background: rgba(255,255,255,0);
+      border: 0;
+      padding: 0;
+      margin: 0;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
 
-    window.location.href =
-      found[0].getAttribute("href");
+    .hotspot:active {
+      background: rgba(30, 100, 210, 0.08);
+    }
 
-  } else if (found.length > 1) {
-
-    result.style.display = "block";
-
-    result.innerHTML =
-      "<b>검색 결과 " +
-      found.length +
-      "건</b><br>" +
-      found.map(card =>
-        "• " +
-        card.querySelector("h2")
-        .innerText
-        .replace(/\n/g," ")
-      ).join("<br>");
-
-  } else {
-
-    result.style.display = "block";
-
-    result.innerHTML =
-      "검색 결과가 없습니다.<br>다른 업무명으로 검색해주세요.";
-
-  }
-
-}
-
-</script>
-
-</body>
-</html>
+    /*
+      혹시 이미지 로딩 중일 때 화면이 튀는 현상 방지
+    */
+    img {

@@ -53,7 +53,7 @@ body{
     width:100%;
     max-width:1080px;
     min-height:100vh;
-    background:#fff;
+    background:#ffffff;
     overflow-x:hidden;
 }
 
@@ -76,7 +76,6 @@ body{
     margin:0;
     padding:0;
     border:0;
-
     user-select:none;
     -webkit-user-drag:none;
 }
@@ -85,19 +84,16 @@ body{
     position:absolute;
     z-index:20;
     display:block;
-
     margin:0;
     padding:0;
     border:0;
-
     background:transparent;
-
     cursor:pointer;
     touch-action:manipulation;
 }
 
 .hotspot:active{
-    background:rgba(0,100,255,.08);
+    background:rgba(0,100,255,.06);
 }
 
 </style>
@@ -109,7 +105,7 @@ body{
 
 
 <!-- =====================================================
-     H-LINK HOME
+     ① H-LINK HOME
 ===================================================== -->
 
 <section id="home" class="page active">
@@ -119,7 +115,8 @@ src="./home.png"
 class="page-image"
 alt="H-LINK">
 
-<!-- 01 경찰서 -->
+
+<!-- 01 경찰서 부서별 -->
 <button
 class="hotspot"
 aria-label="경찰서 부서별 업무연락처"
@@ -131,6 +128,7 @@ height:15%;
 "
 onclick="showPage('departments')">
 </button>
+
 
 <!-- 02 지역관서 -->
 <button
@@ -145,6 +143,7 @@ height:15%;
 onclick="showPage('local')">
 </button>
 
+
 <!-- 03 유관기관 -->
 <button
 class="hotspot"
@@ -157,6 +156,7 @@ height:15%;
 "
 onclick="showPage('district-main')">
 </button>
+
 
 <!-- 04 고장수리 -->
 <button
@@ -176,7 +176,7 @@ onclick="showPage('repair')">
 
 
 <!-- =====================================================
-     경찰서 부서별 메인
+     ② 경찰서 부서별 메인
 ===================================================== -->
 
 <section id="departments" class="page">
@@ -185,6 +185,7 @@ onclick="showPage('repair')">
 src="./departments.png"
 class="page-image"
 alt="경찰서 업무연락처">
+
 
 <!-- 이미지 속 홈으로 -->
 <button
@@ -334,278 +335,143 @@ onclick="showPage('department-etc')">
 
 
 <!-- =====================================================
-     01 청문감사인권관
+     경찰서 10개 부서 세부
 ===================================================== -->
 
 <section id="department-audit" class="page">
-
-<img
-src="./departments_audit.png"
+<img src="./departments_audit.png"
 class="page-image"
 alt="청문감사인권관">
 
-<!-- 이미지 속 이전 -->
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     02 범죄예방대응과
-===================================================== -->
-
 <section id="department-prevention" class="page">
-
-<img
-src="./departments_prevention.png"
+<img src="./departments_prevention.png"
 class="page-image"
 alt="범죄예방대응과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     03 경무과
-===================================================== -->
-
 <section id="department-admin" class="page">
-
-<img
-src="./departments_admin.png"
+<img src="./departments_admin.png"
 class="page-image"
 alt="경무과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     04 경비과
-===================================================== -->
-
 <section id="department-security" class="page">
-
-<img
-src="./departments_security.png"
+<img src="./departments_security.png"
 class="page-image"
 alt="경비과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     05 수사과
-===================================================== -->
-
 <section id="department-investigation" class="page">
-
-<img
-src="./departments_investigation.png"
+<img src="./departments_investigation.png"
 class="page-image"
 alt="수사과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     06 형사과
-===================================================== -->
-
 <section id="department-detective" class="page">
-
-<img
-src="./departments_detective.png"
+<img src="./departments_detective.png"
 class="page-image"
 alt="형사과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     07 교통과
-===================================================== -->
-
 <section id="department-traffic" class="page">
-
-<img
-src="./departments_traffic.png"
+<img src="./departments_traffic.png"
 class="page-image"
 alt="교통과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     08 여성청소년과
-===================================================== -->
-
 <section id="department-women-youth" class="page">
-
 <img
 src="./departments_women-youthdepartments_women-youth.png"
 class="page-image"
 alt="여성청소년과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     09 치안정보과
-===================================================== -->
-
 <section id="department-information" class="page">
-
-<img
-src="./departments_information.png"
+<img src="./departments_information.png"
 class="page-image"
 alt="치안정보과">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
-
-<!-- =====================================================
-     10 기타
-===================================================== -->
-
 <section id="department-etc" class="page">
-
-<img
-src="./departments_etc.png"
+<img src="./departments_etc.png"
 class="page-image"
 alt="기타">
 
-<button
-class="hotspot"
+<button class="hotspot"
 aria-label="이전"
-style="
-left:1.5%;
-top:0.7%;
-width:21%;
-height:5%;
-"
+style="left:1%;top:0.3%;width:22%;height:5%;"
 onclick="showPage('departments')">
 </button>
-
 </section>
 
 
 
 <!-- =====================================================
-     지역관서
+     ③ 지역관서 메인
 ===================================================== -->
 
 <section id="local" class="page">
@@ -615,17 +481,161 @@ src="./local.png"
 class="page-image"
 alt="지역관서 연락처">
 
-<!-- 이미지 상단 홈 버튼 영역 -->
+
+<!-- 이미지 속 홈으로 -->
 <button
 class="hotspot"
 aria-label="홈으로"
 style="
-left:1.5%;
-top:0.5%;
-width:22%;
-height:5%;
+left:2%;
+top:0.7%;
+width:20%;
+height:4.5%;
 "
 onclick="goHome()">
+</button>
+
+
+<!-- =========================
+     지역관서 1행
+========================= -->
+
+
+<!-- 재송지구대 -->
+<button
+class="hotspot"
+aria-label="재송지구대"
+style="
+left:3.5%;
+top:40%;
+width:29.5%;
+height:12.2%;
+"
+onclick="showPage('local-jaesong')">
+</button>
+
+
+<!-- 반여지구대 -->
+<button
+class="hotspot"
+aria-label="반여지구대"
+style="
+left:34.5%;
+top:40%;
+width:29.5%;
+height:12.2%;
+"
+onclick="showPage('local-banyeo')">
+</button>
+
+
+<!-- 좌동지구대 -->
+<button
+class="hotspot"
+aria-label="좌동지구대"
+style="
+left:65.5%;
+top:40%;
+width:30.5%;
+height:12.2%;
+"
+onclick="showPage('local-jwadong')">
+</button>
+
+
+
+<!-- =========================
+     지역관서 2행
+========================= -->
+
+
+<!-- 중동지구대 -->
+<button
+class="hotspot"
+aria-label="중동지구대"
+style="
+left:3.5%;
+top:52.8%;
+width:29.5%;
+height:12.2%;
+"
+onclick="showPage('local-jungdong')">
+</button>
+
+
+<!-- 우동지구대 -->
+<button
+class="hotspot"
+aria-label="우동지구대"
+style="
+left:34.5%;
+top:52.8%;
+width:29.5%;
+height:12.2%;
+"
+onclick="showPage('local-udong')">
+</button>
+
+
+<!-- 반송파출소 -->
+<button
+class="hotspot"
+aria-label="반송파출소"
+style="
+left:65.5%;
+top:52.8%;
+width:30.5%;
+height:12.2%;
+"
+onclick="showPage('local-bansong')">
+</button>
+
+
+
+<!-- =========================
+     지역관서 3행
+========================= -->
+
+
+<!-- 반여2·3파출소 -->
+<button
+class="hotspot"
+aria-label="반여2·3파출소"
+style="
+left:3.5%;
+top:65.6%;
+width:29.5%;
+height:12.2%;
+"
+onclick="showPage('local-banyeo23')">
+</button>
+
+
+<!-- 반석파출소 -->
+<button
+class="hotspot"
+aria-label="반석파출소"
+style="
+left:34.5%;
+top:65.6%;
+width:29.5%;
+height:12.2%;
+"
+onclick="showPage('local-banseok')">
+</button>
+
+
+<!-- 송정파출소 -->
+<button
+class="hotspot"
+aria-label="송정파출소"
+style="
+left:65.5%;
+top:65.6%;
+width:30.5%;
+height:12.2%;
+"
+onclick="showPage('local-songjeong')">
 </button>
 
 </section>
@@ -633,7 +643,228 @@ onclick="goHome()">
 
 
 <!-- =====================================================
-     유관기관 메인
+     지역관서 9개 세부
+===================================================== -->
+
+
+<!-- 재송지구대 -->
+<section id="local-jaesong" class="page">
+
+<img
+src="./local_jaesong.png"
+class="page-image"
+alt="재송지구대">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 반여지구대 -->
+<section id="local-banyeo" class="page">
+
+<img
+src="./local_banyeo.png"
+class="page-image"
+alt="반여지구대">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 좌동지구대 -->
+<section id="local-jwadong" class="page">
+
+<img
+src="./local_jwadong.png"
+class="page-image"
+alt="좌동지구대">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 중동지구대 -->
+<section id="local-jungdong" class="page">
+
+<img
+src="./local_jungdong.png"
+class="page-image"
+alt="중동지구대">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 우동지구대 -->
+<section id="local-udong" class="page">
+
+<img
+src="./local_udong.png"
+class="page-image"
+alt="우동지구대">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 반송파출소 -->
+<section id="local-bansong" class="page">
+
+<img
+src="./local_bansong.png"
+class="page-image"
+alt="반송파출소">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 반여2·3파출소 -->
+<section id="local-banyeo23" class="page">
+
+<img
+src="./local_banyeo23.png"
+class="page-image"
+alt="반여2·3파출소">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 반석파출소 -->
+<section id="local-banseok" class="page">
+
+<img
+src="./local_banseok.png"
+class="page-image"
+alt="반석파출소">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- 송정파출소 -->
+<section id="local-songjeong" class="page">
+
+<img
+src="./local_songjeong.png"
+class="page-image"
+alt="송정파출소">
+
+<button
+class="hotspot"
+aria-label="이전"
+style="
+left:1%;
+top:0.3%;
+width:22%;
+height:5%;
+"
+onclick="showPage('local')">
+</button>
+
+</section>
+
+
+
+<!-- =====================================================
+     ④ 유관기관 메인
 ===================================================== -->
 
 <section id="district-main" class="page">
@@ -643,7 +874,8 @@ src="./district.png"
 class="page-image"
 alt="유관기관 연락처">
 
-<!-- 이미지 상단 홈 버튼 -->
+
+<!-- 이미지 속 홈으로 -->
 <button
 class="hotspot"
 aria-label="홈으로"
@@ -765,7 +997,7 @@ onclick="showPage('district-facilities')">
 
 
 <!-- =====================================================
-     유관기관 세부
+     유관기관 세부 8개
 ===================================================== -->
 
 <section id="district-office" class="page">
@@ -773,8 +1005,10 @@ onclick="showPage('district-facilities')">
 class="page-image"
 alt="해운대구청">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -785,8 +1019,10 @@ onclick="showPage('district-main')">
 class="page-image"
 alt="동 행정복지센터">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -797,8 +1033,10 @@ onclick="showPage('district-main')">
 class="page-image"
 alt="보건 의료기관">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -809,8 +1047,10 @@ onclick="showPage('district-main')">
 class="page-image"
 alt="소방서">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -821,8 +1061,10 @@ onclick="showPage('district-main')">
 class="page-image"
 alt="보호 응급지원기관">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -833,8 +1075,10 @@ onclick="showPage('district-main')">
 class="page-image"
 alt="교통 도로기관">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -845,8 +1089,10 @@ onclick="showPage('district-main')">
 class="page-image"
 alt="공공 업무 유관기관">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -857,8 +1103,10 @@ onclick="showPage('district-main')">
 class="page-image"
 alt="다중이용시설">
 
-<button class="hotspot"
-style="left:1.5%;top:.5%;width:22%;height:5%;"
+<button
+class="hotspot"
+aria-label="이전"
+style="left:1%;top:.3%;width:22%;height:5%;"
 onclick="showPage('district-main')">
 </button>
 </section>
@@ -866,7 +1114,7 @@ onclick="showPage('district-main')">
 
 
 <!-- =====================================================
-     고장 수리
+     ⑤ 고장 수리
 ===================================================== -->
 
 <section id="repair" class="page">
@@ -876,6 +1124,7 @@ src="./repair.png"
 class="page-image"
 alt="고장 수리">
 
+<!-- 이미지 속 홈으로 -->
 <button
 class="hotspot"
 aria-label="홈으로"
@@ -894,11 +1143,12 @@ onclick="goHome()">
 </div>
 
 
+
 <script>
 
-/* =========================
-   페이지 열기
-========================= */
+/* ==========================================
+   페이지 이동
+========================================== */
 
 function showPage(pageId){
 
@@ -906,10 +1156,12 @@ function showPage(pageId){
         document.getElementById(pageId);
 
     if(!target){
+
         console.error(
-            "페이지 없음:",
+            "페이지를 찾을 수 없습니다:",
             pageId
         );
+
         return;
     }
 
@@ -927,9 +1179,9 @@ function showPage(pageId){
 }
 
 
-/* =========================
+/* ==========================================
    HOME
-========================= */
+========================================== */
 
 function goHome(){
 
@@ -938,9 +1190,9 @@ function goHome(){
 }
 
 
-/* =========================
+/* ==========================================
    이미지 드래그 방지
-========================= */
+========================================== */
 
 document
 .querySelectorAll("img")
@@ -954,9 +1206,9 @@ document
 });
 
 
-/* =========================
+/* ==========================================
    PWA
-========================= */
+========================================== */
 
 if("serviceWorker" in navigator){
 

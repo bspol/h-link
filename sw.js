@@ -1,22 +1,15 @@
-const CACHE_NAME = "hlink-v2";
+const CACHE_NAME = "hlink-v4";
 
-const APP_SHELL = [
-  "./",
-  "./index.html",
+const CORE_FILES = [
   "./manifest.json",
   "./icon-512.png",
-  "./chamsuri.png",
-  "./home.png",
-  "./departments.png",
-  "./local.png",
-  "./district.png",
-  "./repair.png"
+  "./chamsuri.png"
 ];
 
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(APP_SHELL);
+      return cache.addAll(CORE_FILES);
     })
   );
 
@@ -28,7 +21,7 @@ self.addEventListener("activate", event => {
     caches.keys().then(keys => {
       return Promise.all(
         keys
-          .filter(key => key !== CACHE_NAME)
+          .filter(key => key.startsWith("hlink-") && key !== CACHE_NAME)
           .map(key => caches.delete(key))
       );
     })
@@ -46,9 +39,37 @@ self.addEventListener("fetch", event => {
 
   if (url.origin !== self.location.origin) return;
 
+  /* index.html은 항상 최신 파일을 먼저 받기 */
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request)
+      fetch(request, { cache: "no-store" })
+        .then(response => {
+          const copy = response.clone();
+
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put("./index.html", copy);
+          });
+
+          return response;
+        })
+        .catch(() => caches.match("./index.html"))
+    );
+
+    return;
+  }
+
+  /* 홈과 주요 메뉴 이미지는 최신 파일 우선 */
+  const importantImages = [
+    "/h-link/home.png",
+    "/h-link/departments.png",
+    "/h-link/local.png",
+    "/h-link/district.png",
+    "/h-link/repair.png"
+  ];
+
+  if (importantImages.includes(url.pathname)) {
+    event.respondWith(
+      fetch(request, { cache: "no-store" })
         .then(response => {
           const copy = response.clone();
 
@@ -58,31 +79,28 @@ self.addEventListener("fetch", event => {
 
           return response;
         })
-        .catch(() => {
-          return caches.match("./index.html");
-        })
+        .catch(() => caches.match(request))
     );
 
     return;
   }
 
+  /* 나머지 이미지는 캐시가 있으면 빠르게 표시 */
   event.respondWith(
-    caches.match(request).then(cachedResponse => {
-      const networkFetch = fetch(request)
-        .then(response => {
-          if (response && response.status === 200) {
-            const copy = response.clone();
+    caches.match(request).then(cached => {
+      if (cached) return cached;
 
-            caches.open(CACHE_NAME).then(cache => {
-              cache.put(request, copy);
-            });
-          }
+      return fetch(request).then(response => {
+        if (response && response.status === 200) {
+          const copy = response.clone();
 
-          return response;
-        })
-        .catch(() => cachedResponse);
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, copy);
+          });
+        }
 
-      return cachedResponse || networkFetch;
+        return response;
+      });
     })
   );
 });

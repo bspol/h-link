@@ -20,10 +20,119 @@ body{display:flex;justify-content:center}
 .page.active{display:block}
 .page-image{display:block;width:100%;height:auto;border:0;user-select:none;-webkit-user-drag:none}
 .hotspot{position:absolute;z-index:20;display:block;margin:0;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;text-decoration:none}
+/* H-LINK 비밀번호 첫 화면 */
+#loginGate{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:linear-gradient(180deg,#eef8ff 0%,#ffffff 100%);
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  padding:38px 28px 32px;
+  background:#ffffff;
+  border-radius:28px;
+  box-shadow:0 12px 40px rgba(0,70,140,.15);
+  text-align:center;
+}
+
+.login-logo{
+  margin:0 0 8px;
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:-2px;
+  color:#073b8c;
+}
+
+.login-subtitle{
+  margin:0 0 30px;
+  font-size:15px;
+  line-height:1.6;
+  color:#59697a;
+}
+
+#hlinkPassword{
+  width:100%;
+  height:58px;
+  padding:0 18px;
+  border:2px solid #d9e4ef;
+  border-radius:16px;
+  outline:none;
+  font-size:20px;
+  text-align:center;
+  background:#f8fbfe;
+}
+
+#hlinkPassword:focus{
+  border-color:#168be8;
+  background:#ffffff;
+}
+
+#loginButton{
+  width:100%;
+  height:58px;
+  margin-top:14px;
+  border:0;
+  border-radius:16px;
+  background:#0878d1;
+  color:#ffffff;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+#loginMessage{
+  min-height:22px;
+  margin-top:14px;
+  font-size:14px;
+  color:#d93025;
+}
+
+#app{
+  display:none;
+}
+
+body.hlink-authenticated #loginGate{
+  display:none;
+}
+
+body.hlink-authenticated #app{
+  display:block;
+}
 </style>
 </head>
 
 <body>
+<!-- H-LINK 비밀번호 첫 화면 -->
+<div id="loginGate">
+  <div class="login-box">
+    <div class="login-logo">H-LINK</div>
+
+    <p class="login-subtitle">
+      해운대경찰서 스마트 업무지원 플랫폼<br>
+      비밀번호를 입력해주세요.
+    </p>
+
+    <input
+      id="hlinkPassword"
+      type="password"
+      placeholder="비밀번호"
+      autocomplete="current-password"
+    >
+
+    <button id="loginButton" type="button">
+      접속하기
+    </button>
+
+    <div id="loginMessage"></div>
+  </div>
+</div>    
 <div id="app">
 
 <!-- 홈 -->
@@ -784,6 +893,102 @@ if("serviceWorker" in navigator){
         });
     });
 }
+/* ===== H-LINK 비밀번호 인증 ===== */
+
+const HLINK_SUPABASE_URL =
+  "https://wikqcnzwnnpejmybnwav.supabase.co";
+
+const HLINK_PUBLISHABLE_KEY =
+  "sb_publishable_hZC-TNEeJxCna2ZAhPTK1w_xSNe5-5w";
+
+const hlinkPassword = document.getElementById("hlinkPassword");
+const loginButton = document.getElementById("loginButton");
+const loginMessage = document.getElementById("loginMessage");
+
+/* 현재 브라우저를 닫기 전까지 로그인 상태 유지 */
+if (sessionStorage.getItem("hlink_authenticated") === "yes") {
+  document.body.classList.add("hlink-authenticated");
+}
+
+async function verifyHlinkPassword() {
+  const password = hlinkPassword.value.trim();
+
+  if (!password) {
+    loginMessage.textContent = "비밀번호를 입력해주세요.";
+    return;
+  }
+
+  loginButton.disabled = true;
+  loginButton.textContent = "확인 중...";
+  loginMessage.textContent = "";
+
+  try {
+    const response = await fetch(
+      HLINK_SUPABASE_URL +
+        "/rest/v1/rpc/verify_hlink_password",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": HLINK_PUBLISHABLE_KEY
+        },
+        body: JSON.stringify({
+          input_password: password
+        })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("인증 서버 오류");
+    }
+
+    const isValid = await response.json();
+
+    if (isValid === true) {
+      sessionStorage.setItem(
+        "hlink_authenticated",
+        "yes"
+      );
+
+      document.body.classList.add(
+        "hlink-authenticated"
+      );
+
+      hlinkPassword.value = "";
+      loginMessage.textContent = "";
+
+      window.scrollTo(0, 0);
+    } else {
+      loginMessage.textContent =
+        "비밀번호가 올바르지 않습니다.";
+
+      hlinkPassword.select();
+    }
+
+  } catch (error) {
+    console.error(error);
+
+    loginMessage.textContent =
+      "접속을 확인할 수 없습니다. 잠시 후 다시 시도해주세요.";
+  } finally {
+    loginButton.disabled = false;
+    loginButton.textContent = "접속하기";
+  }
+}
+
+loginButton.addEventListener(
+  "click",
+  verifyHlinkPassword
+);
+
+hlinkPassword.addEventListener(
+  "keydown",
+  function(event) {
+    if (event.key === "Enter") {
+      verifyHlinkPassword();
+    }
+  }
+);
 </script>
 
 </body>

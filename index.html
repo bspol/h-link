@@ -8,7 +8,52 @@
 <link rel="prefetch" href="./local.png" as="image">
 <link rel="prefetch" href="./district.png" as="image">
 <link rel="prefetch" href="./repair.png" as="image">
-<style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;padding:0;width:100%;min-height:100%;background:#edf2f7;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}body{display:flex;justify-content:center}#app{position:relative;width:100%;max-width:1080px;min-height:100vh;background:linear-gradient(180deg,#ffffff 0%,#eef6fd 100%);overflow-x:hidden}.page{display:none;position:relative;width:100%}.page.active{display:block}.page-image{display:block;width:100%;height:auto;border:0;user-select:none;-webkit-user-drag:none}.hotspot{position:absolute;z-index:20;display:block;margin:0;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;text-decoration:none}
+<style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;padding:0;width:100%;min-height:100%;background:#edf2f7;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}body{display:flex;justify-content:center}#app{position:relative;width:100%;max-width:1080px;min-height:100vh;background:linear-gradient(180deg,#ffffff 0%,#eef6fd 100%);overflow-x:hidden}.page{display:none;position:relative;width:100%}.page.active{display:block}.page-image{display:block;width:100%;height:auto;border:0;user-select:none;-webkit-user-drag:none}
+.hotspot{position:absolute;z-index:20;display:block;margin:0;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;text-decoration:none}
+
+/* 홈 이미지에 그려진 검색창을 실제 검색창으로 사용 */
+#homeSearchInput{
+  position:absolute;
+  z-index:35;
+  left:15%;
+  top:34.55%;
+  width:60%;
+  height:4.75%;
+  margin:0;
+  padding:0 1.5%;
+  border:0;
+  outline:0;
+  border-radius:999px;
+  background:#ffffff;
+  color:#26364a;
+  font-family:inherit;
+  font-size:clamp(16px,2.5vw,28px);
+  font-weight:600;
+  line-height:1;
+  -webkit-appearance:none;
+  appearance:none;
+}
+#homeSearchInput::placeholder{
+  color:#7c8798;
+  opacity:1;
+  font-weight:500;
+}
+#homeSearchButton{
+  position:absolute;
+  z-index:36;
+  left:79%;
+  top:34.45%;
+  width:16.5%;
+  height:4.9%;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
 /* H-LINK 비밀번호 첫 화면 */
 #loginGate{
   position:fixed;
@@ -146,7 +191,7 @@ body.hlink-authenticated #loginGate{display:none}
     <div id="loginMessage"></div>
   </div>
 </div>
-<div id="app"><section id="home" class="page active"><img src="./home.png" class="page-image" alt="H-LINK" loading="eager" fetchpriority="high" decoding="async"><button class="hotspot" style="left:3%;top:42.5%;width:44%;height:15%;" onclick="showPage('departments')"></button><button class="hotspot" style="left:48%;top:42.5%;width:49%;height:15%;" onclick="showPage('local')"></button><button class="hotspot" style="left:3%;top:58%;width:44%;height:15%;" onclick="showPage('district-main')"></button><button class="hotspot" style="left:48%;top:58%;width:49%;height:15%;" onclick="showPage('repair')"></button></section>
+<div id="app"><section id="home" class="page active"><img src="./home.png" class="page-image" alt="H-LINK" loading="eager" fetchpriority="high" decoding="async"><input id="homeSearchInput" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="어떤 업무를 찾으세요?" aria-label="업무 검색"><button id="homeSearchButton" type="button" aria-label="검색"></button><button class="hotspot" style="left:3%;top:42.5%;width:44%;height:15%;" onclick="showPage('departments')"></button><button class="hotspot" style="left:48%;top:42.5%;width:49%;height:15%;" onclick="showPage('local')"></button><button class="hotspot" style="left:3%;top:58%;width:44%;height:15%;" onclick="showPage('district-main')"></button><button class="hotspot" style="left:48%;top:58%;width:49%;height:15%;" onclick="showPage('repair')"></button></section>
 <section id="departments" class="page"><img src="./departments.png" class="page-image" alt="경찰서 부서별 업무연락처" loading="lazy" decoding="async"><button class="hotspot" style="left:2%;top:.5%;width:21%;height:5%;" onclick="goHome()"></button>
 <button class="hotspot" style="left:3%;top:29%;width:46.5%;height:10.6%;" onclick="showPage('department-audit')"></button><button class="hotspot" style="left:50.5%;top:29%;width:46.5%;height:10.6%;" onclick="showPage('department-prevention')"></button><button class="hotspot" style="left:3%;top:40.2%;width:46.5%;height:10.4%;" onclick="showPage('department-admin')"></button><button class="hotspot" style="left:50.5%;top:40.2%;width:46.5%;height:10.4%;" onclick="showPage('department-security')"></button><button class="hotspot" style="left:3%;top:51.3%;width:46.5%;height:10.4%;" onclick="showPage('department-investigation')"></button><button class="hotspot" style="left:50.5%;top:51.3%;width:46.5%;height:10.4%;" onclick="showPage('department-detective')"></button><button class="hotspot" style="left:3%;top:62.3%;width:46.5%;height:10.6%;" onclick="showPage('department-traffic')"></button><button class="hotspot" style="left:50.5%;top:62.3%;width:46.5%;height:10.6%;" onclick="showPage('department-women-youth')"></button><button class="hotspot" style="left:3%;top:73.4%;width:46.5%;height:10.5%;" onclick="showPage('department-information')"></button><button class="hotspot" style="left:50.5%;top:73.4%;width:46.5%;height:10.5%;" onclick="showPage('department-etc')"></button></section><section id="department-audit" class="page">
 <img src="./departments_audit.png" class="page-image" alt="department-audit" loading="lazy" decoding="async">
@@ -461,6 +506,109 @@ async function showPage(pageId){
 function goHome(){
   showPage("home");
 }document.querySelectorAll("img").forEach(img=>img.setAttribute("draggable","false"));if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4").catch(console.log))}
+
+
+/* ===== 홈 업무 검색 ===== */
+const homeSearchInput=document.getElementById("homeSearchInput");
+const homeSearchButton=document.getElementById("homeSearchButton");
+
+const HLINK_SEARCH_ROUTES=[
+  /* 경찰서 부서 */
+  {page:"department-audit",keys:["청문","감사","인권","청문감사","청문감사인권"]},
+  {page:"department-prevention",keys:["범죄예방","범예","범죄예방대응","범죄예방대응과"]},
+  {page:"department-admin",keys:["경무","경무과","서무","인사","복지"]},
+  {page:"department-security",keys:["경비","경비과","경비계"]},
+  {page:"department-investigation",keys:["수사","수사과","수사1","수사2"]},
+  {page:"department-detective",keys:["형사","형사과","형사1","형사2"]},
+  {page:"department-traffic",keys:["교통과","교통계","교통경찰","교통조사"]},
+  {page:"department-women-youth",keys:["여청","여성청소년","여성청소년과","여성청소년계","학교폭력","아동청소년"]},
+  {page:"department-information",keys:["정보","정보과","치안정보","치안정보과"]},
+  {page:"department-etc",keys:["민원","민원실","112","상황실","기타","외부연락처","현장외부"]},
+
+  /* 지역관서 */
+  {page:"local-jaesong",keys:["재송","재송지구대"]},
+  {page:"local-banyeo",keys:["반여","반여지구대"]},
+  {page:"local-jwadong",keys:["좌동","좌동지구대"]},
+  {page:"local-jungdong",keys:["중동","중동지구대"]},
+  {page:"local-udong",keys:["우동","우동지구대"]},
+  {page:"local-bansong",keys:["반송","반송파출소"]},
+  {page:"local-banyeo23",keys:["반여23","반여2·3","반여2.3","반여2","반여3","반여23파출소"]},
+  {page:"local-banseok",keys:["반석","반석파출소"]},
+  {page:"local-songjeong",keys:["송정","송정파출소"]},
+
+  /* 유관기관 */
+  {page:"district-office",keys:["구청","해운대구청","구청부서"]},
+  {page:"district-dong",keys:["행정복지센터","주민센터","동사무소","행정복지"]},
+  {page:"district-health",keys:["보건소","의료기관","병원","보건"]},
+  {page:"district-fire",keys:["소방","소방서","119"]},
+  {page:"district-support",keys:["지원기관","상담기관","지원센터"]},
+  {page:"district-traffic",keys:["교통기관","교통공단","교통유관기관"]},
+  {page:"district-public",keys:["공공기관","공공"]},
+  {page:"district-facilities",keys:["시설기관","시설관리","시설"]},
+
+  /* 고장·수리 */
+  {page:"repair",keys:["고장","수리","프린터","프린터수리","pc","컴퓨터","무전기","순찰차","통신","시설고장","장비수리"]},
+
+  /* 큰 분류 */
+  {page:"departments",keys:["경찰서","경찰서부서","부서","업무연락처"]},
+  {page:"local",keys:["지역관서","지구대","파출소"]},
+  {page:"district-main",keys:["유관기관","유관","기관연락처"]},
+  {page:"repair",keys:["고장수리"]}
+];
+
+function normalizeHlinkSearch(value){
+  return String(value||"")
+    .toLowerCase()
+    .replace(/[\s\-_.·ㆍ()]/g,"");
+}
+
+function runHlinkSearch(){
+  if(!homeSearchInput)return;
+
+  const raw=homeSearchInput.value.trim();
+  const q=normalizeHlinkSearch(raw);
+
+  if(!q){
+    homeSearchInput.focus();
+    return;
+  }
+
+  let targetPage=null;
+
+  for(const route of HLINK_SEARCH_ROUTES){
+    const matched=route.keys.some(key=>{
+      const k=normalizeHlinkSearch(key);
+      return q===k || q.includes(k);
+    });
+    if(matched){
+      targetPage=route.page;
+      break;
+    }
+  }
+
+  if(!targetPage){
+    alert("검색 결과가 없습니다.\n예: 형사, 여청, 우동, 송정, 구청, 보건소, 소방, 프린터");
+    homeSearchInput.focus();
+    homeSearchInput.select();
+    return;
+  }
+
+  homeSearchInput.value="";
+  showPage(targetPage);
+}
+
+if(homeSearchButton){
+  homeSearchButton.addEventListener("click",runHlinkSearch);
+}
+if(homeSearchInput){
+  homeSearchInput.addEventListener("keydown",function(event){
+    if(event.key==="Enter"){
+      event.preventDefault();
+      runHlinkSearch();
+      homeSearchInput.blur();
+    }
+  });
+}
 
 /* ===== H-LINK 비밀번호 인증 ===== */
 const HLINK_SUPABASE_URL="https://wikqcnzwnnpejmybnwav.supabase.co";

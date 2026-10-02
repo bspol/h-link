@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<meta name="theme-color" content="#ffffff">
-<title>H-LINK | 해운대경찰서 스마트 업무지원</title>
-<link rel="manifest" href="./manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="H-LINK">
-<link rel="apple-touch-icon" href="./icon-512.png">
-
-<style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;width:100%;min-height:100%;background:#edf2f7;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
-body{display:flex;justify-content:center}
-#app{position:relative;width:100%;max-width:1080px;min-height:100vh;background:#fff;overflow-x:hidden}
-.page{display:none;position:relative;width:100%}
-.page.active{display:block}
-.page-image{display:block;width:100%;height:auto;border:0;user-select:none;-webkit-user-drag:none}
-.hotspot{position:absolute;z-index:20;display:block;margin:0;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;text-decoration:none}
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="theme-color" content="#ffffff"><title>H-LINK | 해운대경찰서 스마트 업무지원</title><link rel="manifest" href="./manifest.json"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="H-LINK"><link rel="apple-touch-icon" href="./icon-512.png">
+<link rel="preconnect" href="https://wikqcnzwnnpejmybnwav.supabase.co" crossorigin>
+<link rel="dns-prefetch" href="//wikqcnzwnnpejmybnwav.supabase.co">
+<link rel="preload" href="./chamsuri.png" as="image" fetchpriority="high">
+<link rel="preload" href="./home.png" as="image" fetchpriority="high">
+<link rel="prefetch" href="./departments.png" as="image">
+<link rel="prefetch" href="./local.png" as="image">
+<link rel="prefetch" href="./district.png" as="image">
+<link rel="prefetch" href="./repair.png" as="image">
+<style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;padding:0;width:100%;min-height:100%;background:#edf2f7;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}body{display:flex;justify-content:center}#app{position:relative;width:100%;max-width:1080px;min-height:100vh;background:#fff;overflow-x:hidden}.page{display:none;position:relative;width:100%}.page.active{display:block}.page-image{display:block;width:100%;height:auto;border:0;user-select:none;-webkit-user-drag:none}.hotspot{position:absolute;z-index:20;display:block;margin:0;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;text-decoration:none}
 /* H-LINK 비밀번호 첫 화면 */
 #loginGate{
   position:fixed;
@@ -29,34 +17,45 @@ body{display:flex;justify-content:center}
   align-items:center;
   justify-content:center;
   padding:24px;
-  background:linear-gradient(180deg,#eef8ff 0%,#ffffff 100%);
+  background:linear-gradient(180deg,#eef7ff 0%,#ffffff 100%);
 }
-
 .login-box{
   width:100%;
   max-width:420px;
-  padding:38px 28px 32px;
+  padding:40px 28px 34px;
   background:#ffffff;
   border-radius:28px;
   box-shadow:0 12px 40px rgba(0,70,140,.15);
   text-align:center;
 }
-
+.login-emblem{
+  display:block;
+  width:78px;
+  height:auto;
+  margin:0 auto 14px;
+}
 .login-logo{
-  margin:0 0 8px;
-  font-size:42px;
+  margin:0 0 10px;
+  font-size:38px;
   font-weight:900;
-  letter-spacing:-2px;
+  letter-spacing:-1.5px;
   color:#073b8c;
 }
-
-.login-subtitle{
-  margin:0 0 30px;
-  font-size:15px;
-  line-height:1.6;
-  color:#59697a;
+.login-title{
+  margin:0 0 12px;
+  font-size:21px;
+  font-weight:800;
+  line-height:1.45;
+  color:#1d3557;
+  word-break:keep-all;
 }
-
+.login-subtitle{
+  margin:0 0 28px;
+  font-size:14px;
+  font-weight:500;
+  line-height:1.6;
+  color:#7b8794;
+}
 #hlinkPassword{
   width:100%;
   height:58px;
@@ -64,16 +63,14 @@ body{display:flex;justify-content:center}
   border:2px solid #d9e4ef;
   border-radius:16px;
   outline:none;
-  font-size:20px;
+  font-size:19px;
   text-align:center;
   background:#f8fbfe;
 }
-
 #hlinkPassword:focus{
   border-color:#168be8;
   background:#ffffff;
 }
-
 #loginButton{
   width:100%;
   height:58px;
@@ -86,910 +83,318 @@ body{display:flex;justify-content:center}
   font-weight:800;
   cursor:pointer;
 }
-
+#loginButton:disabled{
+  opacity:.65;
+  cursor:default;
+}
 #loginMessage{
   min-height:22px;
   margin-top:14px;
   font-size:14px;
+  font-weight:600;
   color:#d93025;
 }
-
-#app{
-  display:none;
-}
-
-body.hlink-authenticated #loginGate{
-  display:none;
-}
-
-body.hlink-authenticated #app{
-  display:block;
-}
-</style>
-</head>
-
-<body>
+#app{display:none}
+body.hlink-authenticated #loginGate{display:none}
+body.hlink-authenticated #app{display:block}
+</style></head><body>
 <!-- H-LINK 비밀번호 첫 화면 -->
 <div id="loginGate">
   <div class="login-box">
+    <img src="./chamsuri.png" class="login-emblem" alt="참수리" fetchpriority="high" decoding="async">
     <div class="login-logo">H-LINK</div>
-
-    <p class="login-subtitle">
-      해운대경찰서 스마트 업무지원 플랫폼<br>
-      비밀번호를 입력해주세요.
-    </p>
-
-    <input
-      id="hlinkPassword"
-      type="password"
-      placeholder="비밀번호"
-      autocomplete="current-password"
-    >
-
-    <button id="loginButton" type="button">
-      접속하기
-    </button>
-
+    <div class="login-title">해운대경찰서<br>스마트 업무지원 플랫폼</div>
+    <p class="login-subtitle">내부 접속용 비밀번호를 입력해주세요.</p>
+    <input id="hlinkPassword" type="password" placeholder="비밀번호 입력" autocomplete="current-password">
+    <button id="loginButton" type="button">접속하기</button>
     <div id="loginMessage"></div>
   </div>
-</div>    
-<div id="app">
-
-<!-- 홈 -->
-<section id="home" class="page active">
-<img src="./home.png" class="page-image" alt="H-LINK">
-
-<button class="hotspot" style="left:3%;top:42.5%;width:44%;height:15%;" onclick="showPage('departments')"></button>
-<button class="hotspot" style="left:48%;top:42.5%;width:49%;height:15%;" onclick="showPage('local')"></button>
-<button class="hotspot" style="left:3%;top:58%;width:44%;height:15%;" onclick="showPage('district-main')"></button>
-<button class="hotspot" style="left:48%;top:58%;width:49%;height:15%;" onclick="showPage('repair')"></button>
-</section>
-
-
-<!-- =====================================================
-01 경찰서 부서
-===================================================== -->
-
-<section id="departments" class="page">
-<img src="./departments.png" class="page-image" alt="경찰서 부서별 업무연락처">
-
-<button class="hotspot" style="left:2%;top:.5%;width:21%;height:5%;" onclick="goHome()"></button>
-
-<button class="hotspot" style="left:3%;top:29%;width:46.5%;height:10.6%;" onclick="showPage('department-audit')"></button>
-<button class="hotspot" style="left:50.5%;top:29%;width:46.5%;height:10.6%;" onclick="showPage('department-prevention')"></button>
-
-<button class="hotspot" style="left:3%;top:40.2%;width:46.5%;height:10.4%;" onclick="showPage('department-admin')"></button>
-<button class="hotspot" style="left:50.5%;top:40.2%;width:46.5%;height:10.4%;" onclick="showPage('department-security')"></button>
-
-<button class="hotspot" style="left:3%;top:51.3%;width:46.5%;height:10.4%;" onclick="showPage('department-investigation')"></button>
-<button class="hotspot" style="left:50.5%;top:51.3%;width:46.5%;height:10.4%;" onclick="showPage('department-detective')"></button>
-
-<button class="hotspot" style="left:3%;top:62.3%;width:46.5%;height:10.6%;" onclick="showPage('department-traffic')"></button>
-<button class="hotspot" style="left:50.5%;top:62.3%;width:46.5%;height:10.6%;" onclick="showPage('department-women-youth')"></button>
-
-<button class="hotspot" style="left:3%;top:73.4%;width:46.5%;height:10.5%;" onclick="showPage('department-information')"></button>
-<button class="hotspot" style="left:50.5%;top:73.4%;width:46.5%;height:10.5%;" onclick="showPage('department-etc')"></button>
-</section>
-
-
-<!-- 청문감사인권관 -->
-<section id="department-audit" class="page">
-<img src="./departments_audit.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650216" style="left:48.25%;top:29.43%;width:41.65%;height:5.08%;"></a>
-<a class="hotspot" href="tel:0516650217" style="left:48.25%;top:43.78%;width:41.65%;height:5.08%;"></a>
-<a class="hotspot" href="tel:0516650316" style="left:48.25%;top:49.52%;width:41.65%;height:5.08%;"></a>
-<a class="hotspot" href="tel:0516650317" style="left:48.25%;top:55.26%;width:41.65%;height:5.08%;"></a>
-<a class="hotspot" href="tel:0516650318" style="left:48.25%;top:61.06%;width:41.65%;height:5.08%;"></a>
-<a class="hotspot" href="tel:0516650224" style="left:48.25%;top:75%;width:41.65%;height:5.08%;"></a>
-<a class="hotspot" href="tel:0516650324" style="left:48.25%;top:80.92%;width:41.65%;height:5.08%;"></a>
-</section>
-
-
-<!-- 범죄예방대응과 -->
-<section id="department-prevention" class="page">
-<img src="./departments_prevention.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650245" style="left:51.86%;top:19.74%;width:38.26%;height:2.69%;"></a>
-
-<a class="hotspot" href="tel:0516650229" style="left:51.86%;top:29.01%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650330" style="left:51.86%;top:31.76%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650230" style="left:51.86%;top:34.69%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650331" style="left:51.86%;top:37.62%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650132" style="left:51.86%;top:40.67%;width:38.26%;height:2.69%;"></a>
-
-<a class="hotspot" href="tel:0516650246" style="left:51.86%;top:49.94%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650142" style="left:51.86%;top:52.81%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650346" style="left:51.86%;top:55.62%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650232" style="left:51.86%;top:58.55%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650320" style="left:51.86%;top:61.42%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650332" style="left:51.86%;top:64.29%;width:38.26%;height:2.69%;"></a>
-
-<a class="hotspot" href="tel:0516650247" style="left:51.86%;top:73.39%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650026" style="left:51.86%;top:76.02%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650225" style="left:51.86%;top:78.77%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650226" style="left:51.86%;top:81.46%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650313" style="left:51.86%;top:84.21%;width:38.26%;height:2.69%;"></a>
-<a class="hotspot" href="tel:0516650227" style="left:51.86%;top:86.90%;width:38.26%;height:2.69%;"></a>
-</section>
-
-
-<!-- 경무과 -->
-<section id="department-admin" class="page">
-<img src="./departments_admin.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650220" style="left:52.39%;top:19.56%;width:38.15%;height:2.63%;"></a>
-
-<a class="hotspot" href="tel:0516650221" style="left:52.39%;top:28.53%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650321" style="left:52.39%;top:31.04%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650223" style="left:52.39%;top:33.67%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650027" style="left:52.39%;top:36.36%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650022" style="left:52.39%;top:39.06%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650023" style="left:52.39%;top:41.75%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650024" style="left:52.39%;top:44.44%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650025" style="left:52.39%;top:47.19%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650021" style="left:52.39%;top:49.88%;width:38.15%;height:2.63%;"></a>
-
-<a class="hotspot" href="tel:0516650222" style="left:52.39%;top:58.43%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650322" style="left:52.39%;top:61.12%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650323" style="left:52.39%;top:63.82%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650237" style="left:52.39%;top:66.45%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650319" style="left:52.39%;top:69.08%;width:38.15%;height:2.63%;"></a>
-
-<a class="hotspot" href="tel:0516650241" style="left:52.39%;top:77.69%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650100" style="left:52.39%;top:79.96%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650336" style="left:52.39%;top:82.18%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650236" style="left:52.39%;top:84.45%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650242" style="left:52.39%;top:86.66%;width:38.15%;height:2.63%;"></a>
-<a class="hotspot" href="tel:0516650341" style="left:52.39%;top:88.94%;width:38.15%;height:2.63%;"></a>
-</section>
-
-
-<!-- 경비과 -->
-<section id="department-security" class="page">
-<img src="./departments_security.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650255" style="left:52%;top:27.8%;width:38%;height:4%;"></a>
-<a class="hotspot" href="tel:0516650256" style="left:52%;top:41.8%;width:38%;height:4%;"></a>
-<a class="hotspot" href="tel:0516650365" style="left:52%;top:46.2%;width:38%;height:4%;"></a>
-<a class="hotspot" href="tel:0516650257" style="left:52%;top:50.7%;width:38%;height:4%;"></a>
-<a class="hotspot" href="tel:0516650356" style="left:52%;top:55.1%;width:38%;height:4%;"></a>
-<a class="hotspot" href="tel:0516650357" style="left:52%;top:59.5%;width:38%;height:4%;"></a>
-<a class="hotspot" href="tel:0516650263" style="left:52%;top:64%;width:38%;height:4%;"></a>
-<a class="hotspot" href="tel:0516650258" style="left:52%;top:68.4%;width:38%;height:4%;"></a>
-</section>
-
-
-<!-- 수사과 -->
-<section id="department-investigation" class="page">
-<img src="./departments_investigation.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650266" style="left:51.43%;top:17.88%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650366" style="left:51.43%;top:20.45%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650886" style="left:51.43%;top:23.03%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650296" style="left:51.43%;top:25.60%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650297" style="left:51.43%;top:28.17%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650312" style="left:51.43%;top:30.74%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650889" style="left:51.43%;top:33.31%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650888" style="left:51.43%;top:35.88%;width:38.90%;height:2.51%;"></a>
-
-<a class="hotspot" href="tel:0516650265" style="left:51.43%;top:43.54%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650696" style="left:51.43%;top:46.12%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650368" style="left:51.43%;top:51.26%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650269" style="left:51.43%;top:53.83%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650079" style="left:51.43%;top:56.40%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650369" style="left:51.43%;top:58.97%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650092" style="left:51.43%;top:61.54%;width:38.90%;height:2.51%;"></a>
-
-<a class="hotspot" href="tel:0516650370" style="left:51.43%;top:69.86%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650093" style="left:51.43%;top:72.31%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650267" style="left:51.43%;top:74.70%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650350" style="left:51.43%;top:77.09%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650651" style="left:51.43%;top:79.49%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650617" style="left:51.43%;top:81.94%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650314" style="left:51.43%;top:84.33%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650097" style="left:51.43%;top:86.78%;width:38.90%;height:2.51%;"></a>
-<a class="hotspot" href="tel:0516650096" style="left:51.43%;top:89.17%;width:38.90%;height:2.51%;"></a>
-</section>
-
-
-<!-- 형사과 -->
-<section id="department-detective" class="page">
-<img src="./departments_detective.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650275" style="left:53.13%;top:17.88%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650371" style="left:53.13%;top:20.45%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650018" style="left:53.13%;top:23.03%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650215" style="left:53.13%;top:25.72%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650890" style="left:53.13%;top:28.41%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650378" style="left:53.13%;top:31.10%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:01099932648" style="left:53.13%;top:33.79%;width:37.73%;height:2.45%;"></a>
-
-<a class="hotspot" href="tel:0516650275" style="left:53.13%;top:43.06%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650037" style="left:53.13%;top:45.63%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650372" style="left:53.13%;top:48.21%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650273" style="left:53.13%;top:50.84%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650134" style="left:53.13%;top:53.41%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650040" style="left:53.13%;top:56.04%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650377" style="left:53.13%;top:58.67%;width:37.73%;height:2.45%;"></a>
-
-<a class="hotspot" href="tel:0516650270" style="left:53.13%;top:67.88%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650376" style="left:53.13%;top:70.22%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650050" style="left:53.13%;top:72.55%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650276" style="left:53.13%;top:74.88%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650057" style="left:53.13%;top:77.21%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650373" style="left:53.13%;top:79.55%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650390" style="left:53.13%;top:81.94%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650064" style="left:53.13%;top:84.33%;width:37.73%;height:2.45%;"></a>
-<a class="hotspot" href="tel:0516650121" style="left:53.13%;top:86.78%;width:37.73%;height:2.45%;"></a>
-</section>
-
-
-<!-- 교통과 -->
-<section id="department-traffic" class="page">
-<img src="./departments_traffic.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650250" style="left:52.82%;top:20.51%;width:37.30%;height:2.93%;"></a>
-
-<a class="hotspot" href="tel:0516650253" style="left:52.82%;top:31.94%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650353" style="left:52.82%;top:35.11%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650259" style="left:52.82%;top:38.28%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650359" style="left:52.82%;top:41.45%;width:37.30%;height:2.93%;"></a>
-
-<a class="hotspot" href="tel:0516650351" style="left:52.82%;top:52.45%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650075" style="left:52.82%;top:55.50%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650072" style="left:52.82%;top:58.55%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650059" style="left:52.82%;top:61.60%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650066" style="left:52.82%;top:64.65%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650254" style="left:52.82%;top:67.64%;width:37.30%;height:2.93%;"></a>
-
-<a class="hotspot" href="tel:0516650352" style="left:52.82%;top:77.51%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650326" style="left:52.82%;top:80.56%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650325" style="left:52.82%;top:83.61%;width:37.30%;height:2.93%;"></a>
-<a class="hotspot" href="tel:0516650329" style="left:52.82%;top:86.72%;width:37.30%;height:2.93%;"></a>
-</section>
-
-
-<!-- 여성청소년과 -->
-<section id="department-women-youth" class="page">
-<img src="./departments_women-youthdepartments_women-youth.png" class="page-image">
-
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650243" style="left:52.18%;top:19.98%;width:38.15%;height:3.05%;"></a>
-
-<a class="hotspot" href="tel:0516650248" style="left:52.18%;top:30.20%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650348" style="left:52.18%;top:33.43%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650380" style="left:52.18%;top:36.60%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650896" style="left:52.18%;top:39.89%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650623" style="left:52.18%;top:43.12%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650622" style="left:52.18%;top:46.41%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650620" style="left:52.18%;top:49.64%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650148" style="left:52.18%;top:52.93%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650897" style="left:52.18%;top:56.22%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650145" style="left:52.18%;top:59.57%;width:38.15%;height:3.05%;"></a>
-
-<a class="hotspot" href="tel:0516650249" style="left:52.18%;top:70.22%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650611" style="left:52.18%;top:73.39%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650627" style="left:52.18%;top:76.56%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650629" style="left:52.18%;top:79.78%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650063" style="left:52.18%;top:82.89%;width:38.15%;height:3.05%;"></a>
-<a class="hotspot" href="tel:0516650239" style="left:52.18%;top:86.12%;width:38.15%;height:3.05%;"></a>
-</section>
-
-
-<!-- 치안정보과 -->
-<section id="department-information" class="page">
-<img src="./departments_information.png" class="page-image">
-
-<button class="hotspot"
-style="left:1%;top:.3%;width:22%;height:5%;"
-onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650280"
-style="left:53%;top:30.3%;width:37%;height:4.2%;"></a>
-
-<a class="hotspot" href="tel:0516650281"
-style="left:53%;top:43.9%;width:37%;height:4.2%;"></a>
-
-<a class="hotspot" href="tel:0516650381"
-style="left:53%;top:49.0%;width:37%;height:4.2%;"></a>
-
-<a class="hotspot" href="tel:0516650283"
-style="left:53%;top:54.1%;width:37%;height:4.2%;"></a>
-
-<a class="hotspot" href="tel:0516650285"
-style="left:53%;top:59.2%;width:37%;height:4.2%;"></a>
-
-<a class="hotspot" href="tel:0516650294"
-style="left:53%;top:73.0%;width:37%;height:4.2%;"></a>
-
-<a class="hotspot" href="tel:0516650394"
-style="left:53%;top:78.1%;width:37%;height:4.2%;"></a>
-
-<a class="hotspot" href="tel:0516650395"
-style="left:53%;top:83.2%;width:37%;height:4.2%;"></a>
-</section>
-
-
-<!-- 기타 -->
-<section id="department-etc" class="page">
-<img src="./departments_etc.png" class="page-image">
-
-<button class="hotspot"
-style="left:1%;top:.3%;width:22%;height:5%;"
-onclick="showPage('departments')"></button>
-
-<a class="hotspot" href="tel:0516650377"
-style="left:49.5%;top:21.8%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650378"
-style="left:49.5%;top:24.5%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650306"
-style="left:49.5%;top:27.2%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650344"
-style="left:49.5%;top:29.9%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650301"
-style="left:49.5%;top:32.6%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650304"
-style="left:49.5%;top:35.3%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650305"
-style="left:49.5%;top:38.0%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650308"
-style="left:49.5%;top:40.7%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650309"
-style="left:49.5%;top:43.4%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650233"
-style="left:49.5%;top:46.1%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650881"
-style="left:49.5%;top:48.8%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650030"
-style="left:49.5%;top:51.5%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650362"
-style="left:49.5%;top:54.2%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650396"
-style="left:49.5%;top:56.9%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650299"
-style="left:49.5%;top:59.6%;width:40.5%;height:2.7%;"></a>
-
-
-<a class="hotspot" href="tel:0516650099"
-style="left:49.5%;top:72.3%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650118"
-style="left:49.5%;top:75.0%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516650199"
-style="left:49.5%;top:77.7%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0518991755"
-style="left:49.5%;top:80.4%;width:40.5%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0517403400"
-style="left:49.5%;top:83.1%;width:40.5%;height:2.7%;"></a>
-
-    
-<!-- =====================================================
-02 지역관서
-===================================================== -->
-
-<section id="local" class="page">
-<img src="./local.png" class="page-image" alt="지역관서 연락처">
-
-<button class="hotspot" style="left:2%;top:.7%;width:20%;height:4.5%;" onclick="goHome()"></button>
-
-<button class="hotspot" style="left:3.5%;top:40%;width:29.5%;height:12.2%;" onclick="showPage('local-jaesong')"></button>
-<button class="hotspot" style="left:34.5%;top:40%;width:29.5%;height:12.2%;" onclick="showPage('local-banyeo')"></button>
-<button class="hotspot" style="left:65.5%;top:40%;width:30.5%;height:12.2%;" onclick="showPage('local-jwadong')"></button>
-
-<button class="hotspot" style="left:3.5%;top:52.8%;width:29.5%;height:12.2%;" onclick="showPage('local-jungdong')"></button>
-<button class="hotspot" style="left:34.5%;top:52.8%;width:29.5%;height:12.2%;" onclick="showPage('local-udong')"></button>
-<button class="hotspot" style="left:65.5%;top:52.8%;width:30.5%;height:12.2%;" onclick="showPage('local-bansong')"></button>
-
-<button class="hotspot" style="left:3.5%;top:65.6%;width:29.5%;height:12.2%;" onclick="showPage('local-banyeo23')"></button>
-<button class="hotspot" style="left:34.5%;top:65.6%;width:29.5%;height:12.2%;" onclick="showPage('local-banseok')"></button>
-<button class="hotspot" style="left:65.5%;top:65.6%;width:30.5%;height:12.2%;" onclick="showPage('local-songjeong')"></button>
-</section>
-
-
-<section id="local-jaesong" class="page">
-<img src="./local_jaesong.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650153" style="left:54%;top:60.3%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650252" style="left:54%;top:66.2%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650155" style="left:54%;top:72.3%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650154" style="left:54%;top:78.1%;width:43%;height:5.4%;"></a>
-</section>
-
-
-<section id="local-banyeo" class="page">
-<img src="./local_banyeo.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650159" style="left:54%;top:60.5%;width:43%;height:5.5%;"></a>
-<a class="hotspot" href="tel:0516650158" style="left:54%;top:66.5%;width:43%;height:5.5%;"></a>
-<a class="hotspot" href="tel:0516650157" style="left:54%;top:72.5%;width:43%;height:5.5%;"></a>
-</section>
-
-
-<section id="local-jwadong" class="page">
-<img src="./local_jwadong.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650186" style="left:54%;top:60.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650858" style="left:54%;top:66.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650184" style="left:54%;top:72.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650188" style="left:54%;top:78.4%;width:43%;height:5.4%;"></a>
-</section>
-
-
-<section id="local-jungdong" class="page">
-<img src="./local_jungdong.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650177" style="left:54%;top:60.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650868" style="left:54%;top:66.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650870" style="left:54%;top:72.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650178" style="left:54%;top:78.4%;width:43%;height:5.4%;"></a>
-</section>
-
-
-<section id="local-udong" class="page">
-<img src="./local_udong.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650168" style="left:54%;top:60.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650173" style="left:54%;top:66.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650174" style="left:54%;top:72.4%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650169" style="left:54%;top:78.4%;width:43%;height:5.4%;"></a>
-</section>
-
-
-<section id="local-bansong" class="page">
-<img src="./local_bansong.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650192" style="left:54%;top:61%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650851" style="left:54%;top:67%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650191" style="left:54%;top:73%;width:43%;height:5.4%;"></a>
-</section>
-
-
-<section id="local-banyeo23" class="page">
-<img src="./local_banyeo23.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650162" style="left:54%;top:61%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650161" style="left:54%;top:66.7%;width:43%;height:5.4%;"></a>
-<a class="hotspot" href="tel:0516650165" style="left:54%;top:72.6%;width:43%;height:5.4%;"></a>
-</section>
-
-
-<section id="local-banseok" class="page">
-<img src="./local_banseok.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650195" style="left:54%;top:62.8%;width:43%;height:6%;"></a>
-<a class="hotspot" href="tel:0516650853" style="left:54%;top:70.2%;width:43%;height:6%;"></a>
-</section>
-
-
-<section id="local-songjeong" class="page">
-<img src="./local_songjeong.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button>
-<a class="hotspot" href="tel:0516650197" style="left:54%;top:68.4%;width:43%;height:5.5%;"></a>
-<a class="hotspot" href="tel:0516650180" style="left:54%;top:74.3%;width:43%;height:5.5%;"></a>
-</section>
-
-
-<!-- =====================================================
-03 유관기관
-===================================================== -->
-
-<section id="district-main" class="page">
-<img src="./district.png" class="page-image" alt="유관기관 연락처">
-
-<button class="hotspot" style="left:2%;top:.5%;width:21%;height:5%;" onclick="goHome()"></button>
-
-<button class="hotspot" style="left:2.8%;top:29.1%;width:46.3%;height:15.3%;" onclick="showPage('district-office')"></button>
-<button class="hotspot" style="left:50.5%;top:29.1%;width:46.5%;height:15.3%;" onclick="showPage('district-dong')"></button>
-<button class="hotspot" style="left:2.8%;top:45.2%;width:46.3%;height:14.4%;" onclick="showPage('district-health')"></button>
-<button class="hotspot" style="left:50.5%;top:45.2%;width:46.5%;height:14.4%;" onclick="showPage('district-fire')"></button>
-<button class="hotspot" style="left:2.8%;top:60.3%;width:46.3%;height:13.5%;" onclick="showPage('district-support')"></button>
-<button class="hotspot" style="left:50.5%;top:60.3%;width:46.5%;height:13.5%;" onclick="showPage('district-traffic')"></button>
-<button class="hotspot" style="left:2.8%;top:74.5%;width:46.3%;height:12.7%;" onclick="showPage('district-public')"></button>
-<button class="hotspot" style="left:50.5%;top:74.5%;width:46.5%;height:12.7%;" onclick="showPage('district-facilities')"></button>
-</section>
-
-
-<section id="district-office" class="page">
-<img src="./district_office.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-
-<a class="hotspot" href="tel:0517494881" style="left:64%;top:37.7%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517494511" style="left:64%;top:42.4%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517494687" style="left:64%;top:47.1%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517495681" style="left:64%;top:51.8%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517494641" style="left:64%;top:56.5%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517494541" style="left:64%;top:61.2%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517494381" style="left:64%;top:65.9%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517494222" style="left:64%;top:70.6%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517497601" style="left:64%;top:76.2%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517495700" style="left:64%;top:80.5%;width:32%;height:4.1%;"></a>
-<a class="hotspot" href="tel:0517495800" style="left:64%;top:84.8%;width:32%;height:4.1%;"></a>
-</section>
-
-
-<section id="district-dong" class="page">
-<img src="./district_dong.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-
-<a class="hotspot" href="tel:0517495811" style="left:21%;top:23.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495821" style="left:70%;top:23.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495831" style="left:21%;top:31.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495841" style="left:70%;top:31.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495851" style="left:21%;top:39.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495861" style="left:70%;top:39.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495871" style="left:21%;top:47.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495881" style="left:70%;top:47.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495891" style="left:21%;top:55.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495901" style="left:70%;top:55.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495901" style="left:21%;top:63.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495921" style="left:70%;top:63.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495911" style="left:21%;top:71.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495931" style="left:70%;top:71.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495951" style="left:21%;top:79.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495941" style="left:70%;top:79.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495971" style="left:21%;top:87.5%;width:27%;height:3.4%;"></a>
-<a class="hotspot" href="tel:0517495981" style="left:70%;top:87.5%;width:27%;height:3.4%;"></a>
-</section>
-
-
-<section id="district-health" class="page">
-<img src="./district_health.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-<a class="hotspot" href="tel:0517497514" style="left:4%;top:52.2%;width:44%;height:4.5%;"></a>
-<a class="hotspot" href="tel:0515444080" style="left:52%;top:52.2%;width:44%;height:4.5%;"></a>
-<a class="hotspot" href="tel:0517495681" style="left:4%;top:72.7%;width:44%;height:4.5%;"></a>
-<a class="hotspot" href="tel:0517970100" style="left:52%;top:72.7%;width:44%;height:4.5%;"></a>
-</section>
-
-
-<section id="district-fire" class="page">
-<img src="./district_fire.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-
-<a class="hotspot" href="tel:0517604600" style="left:4%;top:47.6%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517606602" style="left:35.5%;top:47.6%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517606611" style="left:67%;top:47.6%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517606652" style="left:4%;top:61.5%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517606622" style="left:35.5%;top:61.5%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517606642" style="left:67%;top:61.5%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517606632" style="left:4%;top:75.4%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517606662" style="left:35.5%;top:75.4%;width:29%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517605432" style="left:67%;top:75.4%;width:29%;height:3.6%;"></a>
-</section>
-
-
-<section id="district-support" class="page">
-<img src="./district_support.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-
-<a class="hotspot" href="tel:0518993846" style="left:4%;top:36.1%;width:22%;height:3.3%;"></a>
-<a class="hotspot" href="tel:01050629552" style="left:27%;top:36.1%;width:22%;height:3.3%;"></a>
-<a class="hotspot" href="tel:0518993746" style="left:61%;top:36.1%;width:31%;height:3.3%;"></a>
-
-<a class="hotspot" href="tel:0517505886" style="left:4%;top:49.9%;width:22%;height:3.3%;"></a>
-<a class="hotspot" href="tel:01074896112" style="left:27%;top:49.9%;width:22%;height:3.3%;"></a>
-<a class="hotspot" href="tel:0517413567" style="left:52%;top:49.9%;width:22%;height:3.3%;"></a>
-<a class="hotspot" href="tel:15770199" style="left:75%;top:49.9%;width:22%;height:3.3%;"></a>
-
-<a class="hotspot" href="tel:0515451172" style="left:14%;top:63.2%;width:31%;height:3.3%;"></a>
-<a class="hotspot" href="tel:0517151391" style="left:61%;top:63.2%;width:31%;height:3.3%;"></a>
-<a class="hotspot" href="tel:0517827002" style="left:14%;top:76.4%;width:31%;height:3.3%;"></a>
-<a class="hotspot" href="tel:0515019117" style="left:61%;top:76.4%;width:31%;height:3.3%;"></a>
-
-<a class="hotspot" href="tel:0511366" style="left:5%;top:87.3%;width:27%;height:3.3%;"></a>
-<a class="hotspot" href="tel:15771366" style="left:37%;top:87.3%;width:27%;height:3.3%;"></a>
-<a class="hotspot" href="tel:0517561893" style="left:69%;top:87.3%;width:27%;height:3.3%;"></a>
-</section>
-
-
-<section id="district-traffic" class="page">
-<img src="./district_traffic.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-
-<a class="hotspot" href="tel:0518515482" style="left:62%;top:31.6%;width:34%;height:3.2%;"></a>
-<a class="hotspot" href="tel:0805009090" style="left:62%;top:35.2%;width:34%;height:3.2%;"></a>
-<a class="hotspot" href="tel:0516000212" style="left:62%;top:40.7%;width:34%;height:3.2%;"></a>
-<a class="hotspot" href="tel:01064544534" style="left:62%;top:44.3%;width:34%;height:3.2%;"></a>
-<a class="hotspot" href="tel:15445005" style="left:62%;top:50.3%;width:34%;height:3.6%;"></a>
-<a class="hotspot" href="tel:0517035501" style="left:73%;top:57.1%;width:24%;height:3.2%;"></a>
-<a class="hotspot" href="tel:0517027725" style="left:73%;top:60.5%;width:24%;height:3.2%;"></a>
-<a class="hotspot" href="tel:0517907000" style="left:62%;top:67.4%;width:34%;height:3.7%;"></a>
-<a class="hotspot" href="tel:0517800077" style="left:62%;top:75.8%;width:34%;height:3.7%;"></a>
-<a class="hotspot" href="tel:0516205500" style="left:62%;top:84.1%;width:34%;height:3.7%;"></a>
-</section>
-
-
-<section id="district-public" class="page">
-<img src="./district_public.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-<a class="hotspot" href="tel:0516695381" style="left:7%;top:51.7%;width:39%;height:4.4%;"></a>
-<a class="hotspot" href="tel:0517804588" style="left:54%;top:51.7%;width:39%;height:4.4%;"></a>
-<a class="hotspot" href="tel:0517804290" style="left:7%;top:78.3%;width:39%;height:4.4%;"></a>
-<a class="hotspot" href="tel:0517090300" style="left:54%;top:78.3%;width:39%;height:4.4%;"></a>
-</section>
-
-
-<section id="district-facilities" class="page">
-<img src="./district_facilities.png" class="page-image">
-<button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button>
-
-<a class="hotspot" href="tel:0517451234" style="left:61%;top:31%;width:35%;height:2.8%;"></a>
-<a class="hotspot" href="tel:0517451112" style="left:61%;top:33.8%;width:35%;height:2.8%;"></a>
-<a class="hotspot" href="tel:0517451113" style="left:61%;top:36.6%;width:35%;height:2.8%;"></a>
-<a class="hotspot" href="tel:0517452112" style="left:61%;top:39.4%;width:35%;height:2.8%;"></a>
-
-<a class="hotspot" href="tel:15770001" style="left:61%;top:46.5%;width:35%;height:3%;"></a>
-<a class="hotspot" href="tel:0517302112" style="left:61%;top:49.8%;width:35%;height:3%;"></a>
-
-<a class="hotspot" href="tel:0517095600" style="left:61%;top:59%;width:35%;height:3%;"></a>
-<a class="hotspot" href="tel:0517095501" style="left:61%;top:62.3%;width:35%;height:3%;"></a>
-
-<a class="hotspot" href="tel:0517407300" style="left:61%;top:71.2%;width:35%;height:3.5%;"></a>
-<a class="hotspot" href="tel:0517431974" style="left:61%;top:81.7%;width:35%;height:3.5%;"></a>
-</section>
-
-
-<!-- =====================================================
-04 고장·수리
-===================================================== -->
-
-<section id="repair" class="page">
-<img src="./repair.png" class="page-image" alt="고장·수리 연락처">
-
-<button class="hotspot" style="left:2%;top:.5%;width:21%;height:5%;" onclick="goHome()"></button>
-
-<a class="hotspot" href="tel:15661228" style="left:5%;top:40.6%;width:27%;height:3.5%;"></a>
-<a class="hotspot" href="tel:15666881" style="left:37%;top:40.6%;width:27%;height:3.5%;"></a>
-
-<a class="hotspot" href="tel:07088920790" style="left:68%;top:38.8%;width:28%;height:2.8%;"></a>
-<a class="hotspot" href="tel:01020369695" style="left:68%;top:41.5%;width:28%;height:2.8%;"></a>
-
-<a class="hotspot" href="tel:0518992543" style="left:5%;top:50.3%;width:27%;height:2.7%;"></a>
-<a class="hotspot" href="tel:01065767918" style="left:5%;top:53%;width:27%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0231502964" style="left:37%;top:48.8%;width:27%;height:2.7%;"></a>
-<a class="hotspot" href="tel:0231500199" style="left:37%;top:53%;width:27%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0221635777" style="left:68%;top:50.3%;width:28%;height:2.7%;"></a>
-<a class="hotspot" href="tel:0231502964" style="left:68%;top:53%;width:28%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:01038308999" style="left:5%;top:62.4%;width:27%;height:3.3%;"></a>
-
-<a class="hotspot" href="tel:0515212212" style="left:42%;top:60.4%;width:22%;height:2.7%;"></a>
-<a class="hotspot" href="tel:0517820119" style="left:42%;top:63.4%;width:22%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:01046415549" style="left:68%;top:62.4%;width:28%;height:3.3%;"></a>
-
-<a class="hotspot" href="tel:07086805391" style="left:5%;top:73.5%;width:27%;height:3.3%;"></a>
-<a class="hotspot" href="tel:01038705565" style="left:37%;top:73.5%;width:27%;height:3.3%;"></a>
-<a class="hotspot" href="tel:01065767918" style="left:68%;top:73.5%;width:28%;height:3.3%;"></a>
-
-<a class="hotspot" href="tel:01093270467" style="left:5%;top:84.2%;width:27%;height:3.3%;"></a>
-
-<a class="hotspot" href="tel:0518515482" style="left:37%;top:82.7%;width:27%;height:2.7%;"></a>
-<a class="hotspot" href="tel:0805009090" style="left:37%;top:85.5%;width:27%;height:2.7%;"></a>
-
-<a class="hotspot" href="tel:0516000212" style="left:68%;top:82.7%;width:28%;height:2.7%;"></a>
-<a class="hotspot" href="tel:01064544534" style="left:68%;top:85.5%;width:28%;height:2.7%;"></a>
-</section>
-
 </div>
+<div id="app"><section id="home" class="page active"><img src="./home.png" class="page-image" alt="H-LINK" fetchpriority="high" decoding="async"><button class="hotspot" style="left:3%;top:42.5%;width:44%;height:15%;" onclick="showPage('departments')"></button><button class="hotspot" style="left:48%;top:42.5%;width:49%;height:15%;" onclick="showPage('local')"></button><button class="hotspot" style="left:3%;top:58%;width:44%;height:15%;" onclick="showPage('district-main')"></button><button class="hotspot" style="left:48%;top:58%;width:49%;height:15%;" onclick="showPage('repair')"></button></section>
+<section id="departments" class="page"><img src="./departments.png" class="page-image" alt="경찰서 부서별 업무연락처"><button class="hotspot" style="left:2%;top:.5%;width:21%;height:5%;" onclick="goHome()"></button>
+<button class="hotspot" style="left:3%;top:29%;width:46.5%;height:10.6%;" onclick="showPage('department-audit')"></button><button class="hotspot" style="left:50.5%;top:29%;width:46.5%;height:10.6%;" onclick="showPage('department-prevention')"></button><button class="hotspot" style="left:3%;top:40.2%;width:46.5%;height:10.4%;" onclick="showPage('department-admin')"></button><button class="hotspot" style="left:50.5%;top:40.2%;width:46.5%;height:10.4%;" onclick="showPage('department-security')"></button><button class="hotspot" style="left:3%;top:51.3%;width:46.5%;height:10.4%;" onclick="showPage('department-investigation')"></button><button class="hotspot" style="left:50.5%;top:51.3%;width:46.5%;height:10.4%;" onclick="showPage('department-detective')"></button><button class="hotspot" style="left:3%;top:62.3%;width:46.5%;height:10.6%;" onclick="showPage('department-traffic')"></button><button class="hotspot" style="left:50.5%;top:62.3%;width:46.5%;height:10.6%;" onclick="showPage('department-women-youth')"></button><button class="hotspot" style="left:3%;top:73.4%;width:46.5%;height:10.5%;" onclick="showPage('department-information')"></button><button class="hotspot" style="left:50.5%;top:73.4%;width:46.5%;height:10.5%;" onclick="showPage('department-etc')"></button></section><section id="department-audit" class="page">
+<img src="./departments_audit.png" class="page-image" alt="department-audit">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650216" aria-label="051-665-0216" style="left:48.25%;top:29.43%;width:41.65%;height:5.08%;"></a>
+<a class="hotspot" href="tel:0516650217" aria-label="051-665-0217" style="left:48.25%;top:43.78%;width:41.65%;height:5.08%;"></a>
+<a class="hotspot" href="tel:0516650316" aria-label="051-665-0316" style="left:48.25%;top:49.52%;width:41.65%;height:5.08%;"></a>
+<a class="hotspot" href="tel:0516650317" aria-label="051-665-0317" style="left:48.25%;top:55.26%;width:41.65%;height:5.08%;"></a>
+<a class="hotspot" href="tel:0516650318" aria-label="051-665-0318" style="left:48.25%;top:61.06%;width:41.65%;height:5.08%;"></a>
+<a class="hotspot" href="tel:0516650224" aria-label="051-665-0224" style="left:48.25%;top:75.00%;width:41.65%;height:5.08%;"></a>
+<a class="hotspot" href="tel:0516650324" aria-label="051-665-0324" style="left:48.25%;top:80.92%;width:41.65%;height:5.08%;"></a>
+</section>
 
+<section id="department-prevention" class="page">
+<img src="./departments_prevention.png" class="page-image" alt="department-prevention">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650245" aria-label="051-665-0245" style="left:51.86%;top:19.74%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650229" aria-label="051-665-0229" style="left:51.86%;top:29.01%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650330" aria-label="051-665-0330" style="left:51.86%;top:31.76%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650230" aria-label="051-665-0230" style="left:51.86%;top:34.69%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650331" aria-label="051-665-0331" style="left:51.86%;top:37.62%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650132" aria-label="051-665-0132" style="left:51.86%;top:40.67%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650246" aria-label="051-665-0246" style="left:51.86%;top:49.94%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650142" aria-label="051-665-0142" style="left:51.86%;top:52.81%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650346" aria-label="051-665-0346" style="left:51.86%;top:55.62%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650232" aria-label="051-665-0232" style="left:51.86%;top:58.55%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650320" aria-label="051-665-0320" style="left:51.86%;top:61.42%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650332" aria-label="051-665-0332" style="left:51.86%;top:64.29%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650247" aria-label="051-665-0247" style="left:51.86%;top:73.39%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650026" aria-label="051-665-0026" style="left:51.86%;top:76.02%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650225" aria-label="051-665-0225" style="left:51.86%;top:78.77%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650226" aria-label="051-665-0226" style="left:51.86%;top:81.46%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650313" aria-label="051-665-0313" style="left:51.86%;top:84.21%;width:38.26%;height:2.69%;"></a>
+<a class="hotspot" href="tel:0516650227" aria-label="051-665-0227" style="left:51.86%;top:86.90%;width:38.26%;height:2.69%;"></a>
+</section>
 
-<script>
-let localImagesLoaded=false;
-let districtImagesLoaded=false;
+<section id="department-admin" class="page">
+<img src="./departments_admin.png" class="page-image" alt="department-admin">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650220" aria-label="051-665-0220" style="left:52.39%;top:19.56%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650221" aria-label="051-665-0221" style="left:52.39%;top:28.53%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650321" aria-label="051-665-0321" style="left:52.39%;top:31.04%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650223" aria-label="051-665-0223" style="left:52.39%;top:33.67%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650027" aria-label="051-665-0027" style="left:52.39%;top:36.36%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650022" aria-label="051-665-0022" style="left:52.39%;top:39.06%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650023" aria-label="051-665-0023" style="left:52.39%;top:41.75%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650024" aria-label="051-665-0024" style="left:52.39%;top:44.44%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650025" aria-label="051-665-0025" style="left:52.39%;top:47.19%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650021" aria-label="051-665-0021" style="left:52.39%;top:49.88%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650222" aria-label="051-665-0222" style="left:52.39%;top:58.43%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650322" aria-label="051-665-0322" style="left:52.39%;top:61.12%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650323" aria-label="051-665-0323" style="left:52.39%;top:63.82%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650237" aria-label="051-665-0237" style="left:52.39%;top:66.45%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650319" aria-label="051-665-0319" style="left:52.39%;top:69.08%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650241" aria-label="051-665-0241" style="left:52.39%;top:77.69%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650100" aria-label="051-665-0100" style="left:52.39%;top:79.96%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650336" aria-label="051-665-0336" style="left:52.39%;top:82.18%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650236" aria-label="051-665-0236" style="left:52.39%;top:84.45%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650242" aria-label="051-665-0242" style="left:52.39%;top:86.66%;width:38.15%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650341" aria-label="051-665-0341" style="left:52.39%;top:88.94%;width:38.15%;height:2.63%;"></a>
+</section>
 
-function preloadLocalImages(){
-    if(localImagesLoaded) return;
-    localImagesLoaded=true;
+<section id="department-security" class="page">
+<img src="./departments_security.png" class="page-image" alt="department-security">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650255" aria-label="051-665-0255" style="left:49.20%;top:32.89%;width:40.60%;height:5.38%;"></a>
+<a class="hotspot" href="tel:0516650256" aria-label="051-665-0256" style="left:49.20%;top:39.29%;width:40.60%;height:5.38%;"></a>
+<a class="hotspot" href="tel:0516650365" aria-label="051-665-0365" style="left:49.20%;top:45.87%;width:40.60%;height:5.38%;"></a>
+<a class="hotspot" href="tel:0516650257" aria-label="051-665-0257" style="left:49.20%;top:52.39%;width:40.60%;height:5.38%;"></a>
+<a class="hotspot" href="tel:0516650356" aria-label="051-665-0356" style="left:49.20%;top:59.09%;width:40.60%;height:5.38%;"></a>
+<a class="hotspot" href="tel:0516650357" aria-label="051-665-0357" style="left:49.20%;top:65.73%;width:40.60%;height:5.38%;"></a>
+<a class="hotspot" href="tel:0516650263" aria-label="051-665-0263" style="left:49.20%;top:72.31%;width:40.60%;height:5.38%;"></a>
+<a class="hotspot" href="tel:0516650258" aria-label="051-665-0258" style="left:49.20%;top:79.01%;width:40.60%;height:5.38%;"></a>
+</section>
 
-    [
-        "./local_jaesong.png",
-        "./local_banyeo.png",
-        "./local_jwadong.png",
-        "./local_jungdong.png",
-        "./local_udong.png",
-        "./local_bansong.png",
-        "./local_banyeo23.png",
-        "./local_banseok.png",
-        "./local_songjeong.png"
-    ].forEach(function(src){
-        const img=new Image();
-        img.src=src;
-    });
-}
+<section id="department-investigation" class="page">
+<img src="./departments_investigation.png" class="page-image" alt="department-investigation">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650266" aria-label="051-665-0266" style="left:51.43%;top:19.14%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650366" aria-label="051-665-0366" style="left:51.43%;top:21.77%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650886" aria-label="051-665-0886" style="left:51.43%;top:24.40%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650296" aria-label="051-665-0296" style="left:51.43%;top:27.03%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650297" aria-label="051-665-0297" style="left:51.43%;top:29.67%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650312" aria-label="051-665-0312" style="left:51.43%;top:32.30%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650889" aria-label="051-665-0889" style="left:51.43%;top:34.99%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650888" aria-label="051-665-0888" style="left:51.43%;top:37.62%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650265" aria-label="051-665-0265" style="left:51.43%;top:46.11%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650696" aria-label="051-665-0696" style="left:51.43%;top:48.68%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650368" aria-label="051-665-0368" style="left:51.43%;top:51.26%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650269" aria-label="051-665-0269" style="left:51.43%;top:53.83%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650079" aria-label="051-665-0079" style="left:51.43%;top:56.40%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650369" aria-label="051-665-0369" style="left:51.43%;top:58.97%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650092" aria-label="051-665-0092" style="left:51.43%;top:61.54%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650370" aria-label="051-665-0370" style="left:51.43%;top:69.86%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650093" aria-label="051-665-0093" style="left:51.43%;top:72.31%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650267" aria-label="051-665-0267" style="left:51.43%;top:74.70%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650350" aria-label="051-665-0350" style="left:51.43%;top:77.09%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650651" aria-label="051-665-0651" style="left:51.43%;top:79.49%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650617" aria-label="051-665-0617" style="left:51.43%;top:81.94%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650314" aria-label="051-665-0314" style="left:51.43%;top:84.33%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650097" aria-label="051-665-0097" style="left:51.43%;top:86.78%;width:38.90%;height:2.51%;"></a>
+<a class="hotspot" href="tel:0516650096" aria-label="051-665-0096" style="left:51.43%;top:89.17%;width:38.90%;height:2.51%;"></a>
+</section>
 
-function preloadDistrictImages(){
-    if(districtImagesLoaded) return;
-    districtImagesLoaded=true;
+<section id="department-detective" class="page">
+<img src="./departments_detective.png" class="page-image" alt="department-detective">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650275" aria-label="051-665-0275" style="left:53.13%;top:17.88%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650371" aria-label="051-665-0371" style="left:53.13%;top:20.45%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650018" aria-label="051-665-0018" style="left:53.13%;top:23.03%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650215" aria-label="051-665-0215" style="left:53.13%;top:25.72%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650890" aria-label="051-665-0890" style="left:53.13%;top:28.41%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650378" aria-label="051-665-0378" style="left:53.13%;top:31.10%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:01099932648" aria-label="010-9993-2648" style="left:53.13%;top:33.79%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650275" aria-label="051-665-0275" style="left:53.13%;top:43.06%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650037" aria-label="051-665-0037" style="left:53.13%;top:45.63%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650372" aria-label="051-665-0372" style="left:53.13%;top:48.21%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650273" aria-label="051-665-0273" style="left:53.13%;top:50.84%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650134" aria-label="051-665-0134" style="left:53.13%;top:53.41%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650040" aria-label="051-665-0040" style="left:53.13%;top:56.04%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650377" aria-label="051-665-0377" style="left:53.13%;top:58.67%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650270" aria-label="051-665-0270" style="left:53.13%;top:67.88%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650376" aria-label="051-665-0376" style="left:53.13%;top:70.22%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650050" aria-label="051-665-0050" style="left:53.13%;top:72.55%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650276" aria-label="051-665-0276" style="left:53.13%;top:74.88%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650057" aria-label="051-665-0057" style="left:53.13%;top:77.21%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650373" aria-label="051-665-0373" style="left:53.13%;top:79.55%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650390" aria-label="051-665-0390" style="left:53.13%;top:81.94%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650064" aria-label="051-665-0064" style="left:53.13%;top:84.33%;width:37.73%;height:2.45%;"></a>
+<a class="hotspot" href="tel:0516650121" aria-label="051-665-0121" style="left:53.13%;top:86.78%;width:37.73%;height:2.45%;"></a>
+</section>
 
-    [
-        "./district_office.png",
-        "./district_dong.png",
-        "./district_health.png",
-        "./district_fire.png",
-        "./district_support.png",
-        "./district_traffic.png",
-        "./district_public.png",
-        "./district_facilities.png"
-    ].forEach(function(src){
-        const img=new Image();
-        img.src=src;
-    });
-}
+<section id="department-traffic" class="page">
+<img src="./departments_traffic.png" class="page-image" alt="department-traffic">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650250" aria-label="051-665-0250" style="left:52.82%;top:20.51%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650253" aria-label="051-665-0253" style="left:52.82%;top:31.94%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650353" aria-label="051-665-0353" style="left:52.82%;top:35.11%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650259" aria-label="051-665-0259" style="left:52.82%;top:38.28%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650359" aria-label="051-665-0359" style="left:52.82%;top:41.45%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650351" aria-label="051-665-0351" style="left:52.82%;top:52.45%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650075" aria-label="051-665-0075" style="left:52.82%;top:55.50%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650072" aria-label="051-665-0072" style="left:52.82%;top:58.55%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650059" aria-label="051-665-0059" style="left:52.82%;top:61.60%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650066" aria-label="051-665-0066" style="left:52.82%;top:64.65%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650254" aria-label="051-665-0254" style="left:52.82%;top:67.64%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650352" aria-label="051-665-0352" style="left:52.82%;top:77.51%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650326" aria-label="051-665-0326" style="left:52.82%;top:80.56%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650325" aria-label="051-665-0325" style="left:52.82%;top:83.61%;width:37.30%;height:2.93%;"></a>
+<a class="hotspot" href="tel:0516650329" aria-label="051-665-0329" style="left:52.82%;top:86.72%;width:37.30%;height:2.93%;"></a>
+</section>
 
-function showPage(pageId){
-    const target=document.getElementById(pageId);
+<section id="department-women-youth" class="page">
+<img src="./departments_women-youthdepartments_women-youth.png" class="page-image" alt="department-women-youth">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650243" aria-label="051-665-0243" style="left:52.18%;top:19.98%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650248" aria-label="051-665-0248" style="left:52.18%;top:30.20%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650348" aria-label="051-665-0348" style="left:52.18%;top:33.43%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650380" aria-label="051-665-0380" style="left:52.18%;top:36.60%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650896" aria-label="051-665-0896" style="left:52.18%;top:39.89%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650623" aria-label="051-665-0623" style="left:52.18%;top:43.12%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650622" aria-label="051-665-0622" style="left:52.18%;top:46.41%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650620" aria-label="051-665-0620" style="left:52.18%;top:49.64%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650148" aria-label="051-665-0148" style="left:52.18%;top:52.93%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650897" aria-label="051-665-0897" style="left:52.18%;top:56.22%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650145" aria-label="051-665-0145" style="left:52.18%;top:59.57%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650249" aria-label="051-665-0249" style="left:52.18%;top:70.22%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650611" aria-label="051-665-0611" style="left:52.18%;top:73.39%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650627" aria-label="051-665-0627" style="left:52.18%;top:76.56%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650629" aria-label="051-665-0629" style="left:52.18%;top:79.78%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650063" aria-label="051-665-0063" style="left:52.18%;top:82.89%;width:38.15%;height:3.05%;"></a>
+<a class="hotspot" href="tel:0516650239" aria-label="051-665-0239" style="left:52.18%;top:86.12%;width:38.15%;height:3.05%;"></a>
+</section>
 
-    if(!target){
-        console.error("페이지를 찾을 수 없습니다:",pageId);
-        return;
-    }
+<section id="department-information" class="page">
+<img src="./departments_information.png" class="page-image" alt="department-information">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650280" aria-label="051-665-0280" style="left:52.20%;top:30.32%;width:38.00%;height:4.19%;"></a>
+<a class="hotspot" href="tel:0516650281" aria-label="051-665-0281" style="left:52.20%;top:43.96%;width:38.00%;height:4.19%;"></a>
+<a class="hotspot" href="tel:0516650381" aria-label="051-665-0381" style="left:52.20%;top:49.04%;width:38.00%;height:4.19%;"></a>
+<a class="hotspot" href="tel:0516650283" aria-label="051-665-0283" style="left:52.20%;top:54.13%;width:38.00%;height:4.19%;"></a>
+<a class="hotspot" href="tel:0516650285" aria-label="051-665-0285" style="left:52.20%;top:59.21%;width:38.00%;height:4.19%;"></a>
+<a class="hotspot" href="tel:0516650294" aria-label="051-665-0294" style="left:52.20%;top:72.19%;width:38.00%;height:4.19%;"></a>
+<a class="hotspot" href="tel:0516650394" aria-label="051-665-0394" style="left:52.20%;top:77.15%;width:38.00%;height:4.19%;"></a>
+<a class="hotspot" href="tel:0516650395" aria-label="051-665-0395" style="left:52.20%;top:82.24%;width:38.00%;height:4.19%;"></a>
+</section>
 
-    document.querySelectorAll(".page").forEach(function(page){
-        page.classList.remove("active");
-    });
+<section id="department-etc" class="page">
+<img src="./departments_etc.png" class="page-image" alt="department-etc">
+<button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('departments')"></button>
+<a class="hotspot" href="tel:0516650377" aria-label="051-665-0377" style="left:49.52%;top:21.89%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650378" aria-label="051-665-0378" style="left:49.52%;top:24.70%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650306" aria-label="051-665-0306" style="left:49.52%;top:27.51%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650344" aria-label="051-665-0344" style="left:49.52%;top:30.38%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650301" aria-label="051-665-0301" style="left:49.52%;top:33.19%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650304" aria-label="051-665-0304" style="left:49.52%;top:36.06%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650305" aria-label="051-665-0305" style="left:49.52%;top:38.88%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650308" aria-label="051-665-0308" style="left:49.52%;top:41.75%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650309" aria-label="051-665-0309" style="left:49.52%;top:44.62%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650233" aria-label="051-665-0233" style="left:49.52%;top:47.49%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650881" aria-label="051-665-0881" style="left:49.52%;top:50.36%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650030" aria-label="051-665-0030" style="left:49.52%;top:53.17%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650362" aria-label="051-665-0362" style="left:49.52%;top:56.04%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650396" aria-label="051-665-0396" style="left:49.52%;top:58.91%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650299" aria-label="051-665-0299" style="left:49.52%;top:61.84%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650099" aria-label="051-665-0099" style="left:49.52%;top:72.25%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650118" aria-label="051-665-0118" style="left:49.52%;top:75.12%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0516650199" aria-label="051-665-0199" style="left:49.52%;top:77.93%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0518991755" aria-label="051-899-1755" style="left:49.52%;top:80.86%;width:40.38%;height:2.63%;"></a>
+<a class="hotspot" href="tel:0517403400" aria-label="051-740-3400" style="left:49.52%;top:83.73%;width:40.38%;height:2.63%;"></a>
+</section><section id="local" class="page"><img src="./local.png" class="page-image"><button class="hotspot" style="left:2%;top:.7%;width:20%;height:4.5%;" onclick="goHome()"></button><button class="hotspot" style="left:3.5%;top:40%;width:29.5%;height:12.2%;" onclick="showPage('local-jaesong')"></button><button class="hotspot" style="left:34.5%;top:40%;width:29.5%;height:12.2%;" onclick="showPage('local-banyeo')"></button><button class="hotspot" style="left:65.5%;top:40%;width:30.5%;height:12.2%;" onclick="showPage('local-jwadong')"></button><button class="hotspot" style="left:3.5%;top:52.8%;width:29.5%;height:12.2%;" onclick="showPage('local-jungdong')"></button><button class="hotspot" style="left:34.5%;top:52.8%;width:29.5%;height:12.2%;" onclick="showPage('local-udong')"></button><button class="hotspot" style="left:65.5%;top:52.8%;width:30.5%;height:12.2%;" onclick="showPage('local-bansong')"></button><button class="hotspot" style="left:3.5%;top:65.6%;width:29.5%;height:12.2%;" onclick="showPage('local-banyeo23')"></button><button class="hotspot" style="left:34.5%;top:65.6%;width:29.5%;height:12.2%;" onclick="showPage('local-banseok')"></button><button class="hotspot" style="left:65.5%;top:65.6%;width:30.5%;height:12.2%;" onclick="showPage('local-songjeong')"></button></section><section id="local-jaesong" class="page"><img src="./local_jaesong.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650153" style="left:54%;top:60.3%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650252" style="left:54%;top:66.2%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650155" style="left:54%;top:72.3%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650154" style="left:54%;top:78.1%;width:43%;height:5.4%;"></a></section><section id="local-banyeo" class="page"><img src="./local_banyeo.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650159" style="left:54%;top:60.5%;width:43%;height:5.5%;"></a><a class="hotspot" href="tel:0516650158" style="left:54%;top:66.5%;width:43%;height:5.5%;"></a><a class="hotspot" href="tel:0516650157" style="left:54%;top:72.5%;width:43%;height:5.5%;"></a></section><section id="local-jwadong" class="page"><img src="./local_jwadong.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650186" style="left:54%;top:60.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650858" style="left:54%;top:66.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650184" style="left:54%;top:72.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650188" style="left:54%;top:78.4%;width:43%;height:5.4%;"></a></section><section id="local-jungdong" class="page"><img src="./local_jungdong.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650177" style="left:54%;top:60.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650868" style="left:54%;top:66.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650870" style="left:54%;top:72.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650178" style="left:54%;top:78.4%;width:43%;height:5.4%;"></a></section><section id="local-udong" class="page"><img src="./local_udong.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650168" style="left:54%;top:60.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650173" style="left:54%;top:66.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650174" style="left:54%;top:72.4%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650169" style="left:54%;top:78.4%;width:43%;height:5.4%;"></a></section><section id="local-bansong" class="page"><img src="./local_bansong.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650192" style="left:54%;top:61%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650851" style="left:54%;top:67%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650191" style="left:54%;top:73%;width:43%;height:5.4%;"></a></section><section id="local-banyeo23" class="page"><img src="./local_banyeo23.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650162" style="left:54%;top:61%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650161" style="left:54%;top:66.7%;width:43%;height:5.4%;"></a><a class="hotspot" href="tel:0516650165" style="left:54%;top:72.6%;width:43%;height:5.4%;"></a></section><section id="local-banseok" class="page"><img src="./local_banseok.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650195" style="left:54%;top:62.8%;width:43%;height:6%;"></a><a class="hotspot" href="tel:0516650853" style="left:54%;top:70.2%;width:43%;height:6%;"></a></section><section id="local-songjeong" class="page"><img src="./local_songjeong.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:22%;height:5%;" onclick="showPage('local')"></button><a class="hotspot" href="tel:0516650197" style="left:54%;top:68.4%;width:43%;height:5.5%;"></a><a class="hotspot" href="tel:0516650180" style="left:54%;top:74.3%;width:43%;height:5.5%;"></a></section><section id="district-main" class="page"><img src="./district.png" class="page-image"><button class="hotspot" style="left:2%;top:.5%;width:21%;height:5%;" onclick="goHome()"></button><button class="hotspot" style="left:2.8%;top:29.1%;width:46.3%;height:15.3%;" onclick="showPage('district-office')"></button><button class="hotspot" style="left:50.5%;top:29.1%;width:46.5%;height:15.3%;" onclick="showPage('district-dong')"></button><button class="hotspot" style="left:2.8%;top:45.2%;width:46.3%;height:14.4%;" onclick="showPage('district-health')"></button><button class="hotspot" style="left:50.5%;top:45.2%;width:46.5%;height:14.4%;" onclick="showPage('district-fire')"></button><button class="hotspot" style="left:2.8%;top:60.3%;width:46.3%;height:13.5%;" onclick="showPage('district-support')"></button><button class="hotspot" style="left:50.5%;top:60.3%;width:46.5%;height:13.5%;" onclick="showPage('district-traffic')"></button><button class="hotspot" style="left:2.8%;top:74.5%;width:46.3%;height:12.7%;" onclick="showPage('district-public')"></button><button class="hotspot" style="left:50.5%;top:74.5%;width:46.5%;height:12.7%;" onclick="showPage('district-facilities')"></button></section><section id="district-office" class="page"><img src="./district_office.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0517494881" style="left:64%;top:37.7%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517494511" style="left:64%;top:42.4%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517494687" style="left:64%;top:47.1%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517495681" style="left:64%;top:51.8%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517494641" style="left:64%;top:56.5%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517494541" style="left:64%;top:61.2%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517494381" style="left:64%;top:65.9%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517494222" style="left:64%;top:70.6%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517497601" style="left:64%;top:76.2%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517495700" style="left:64%;top:80.5%;width:32%;height:4.1%;"></a><a class="hotspot" href="tel:0517495800" style="left:64%;top:84.8%;width:32%;height:4.1%;"></a></section><section id="district-dong" class="page"><img src="./district_dong.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0517495811" style="left:21%;top:23.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495821" style="left:70%;top:23.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495831" style="left:21%;top:31.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495841" style="left:70%;top:31.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495851" style="left:21%;top:39.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495861" style="left:70%;top:39.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495871" style="left:21%;top:47.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495881" style="left:70%;top:47.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495891" style="left:21%;top:55.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495901" style="left:70%;top:55.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495901" style="left:21%;top:63.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495921" style="left:70%;top:63.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495911" style="left:21%;top:71.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495931" style="left:70%;top:71.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495951" style="left:21%;top:79.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495941" style="left:70%;top:79.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495971" style="left:21%;top:87.5%;width:27%;height:3.4%;"></a><a class="hotspot" href="tel:0517495981" style="left:70%;top:87.5%;width:27%;height:3.4%;"></a></section><section id="district-health" class="page"><img src="./district_health.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0517497514" style="left:4%;top:52.2%;width:44%;height:4.5%;"></a><a class="hotspot" href="tel:0515444080" style="left:52%;top:52.2%;width:44%;height:4.5%;"></a><a class="hotspot" href="tel:0517495681" style="left:4%;top:72.7%;width:44%;height:4.5%;"></a><a class="hotspot" href="tel:0517970100" style="left:52%;top:72.7%;width:44%;height:4.5%;"></a></section><section id="district-fire" class="page"><img src="./district_fire.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0517604600" style="left:4%;top:47.6%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517606602" style="left:35.5%;top:47.6%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517606611" style="left:67%;top:47.6%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517606652" style="left:4%;top:61.5%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517606622" style="left:35.5%;top:61.5%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517606642" style="left:67%;top:61.5%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517606632" style="left:4%;top:75.4%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517606662" style="left:35.5%;top:75.4%;width:29%;height:3.6%;"></a><a class="hotspot" href="tel:0517605432" style="left:67%;top:75.4%;width:29%;height:3.6%;"></a></section><section id="district-support" class="page"><img src="./district_support.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0518993846" style="left:4%;top:36.1%;width:22%;height:3.3%;"></a><a class="hotspot" href="tel:01050629552" style="left:27%;top:36.1%;width:22%;height:3.3%;"></a><a class="hotspot" href="tel:0518993746" style="left:61%;top:36.1%;width:31%;height:3.3%;"></a><a class="hotspot" href="tel:0517505886" style="left:4%;top:49.9%;width:22%;height:3.3%;"></a><a class="hotspot" href="tel:01074896112" style="left:27%;top:49.9%;width:22%;height:3.3%;"></a><a class="hotspot" href="tel:0517413567" style="left:52%;top:49.9%;width:22%;height:3.3%;"></a><a class="hotspot" href="tel:15770199" style="left:75%;top:49.9%;width:22%;height:3.3%;"></a><a class="hotspot" href="tel:0515451172" style="left:14%;top:63.2%;width:31%;height:3.3%;"></a><a class="hotspot" href="tel:0517151391" style="left:61%;top:63.2%;width:31%;height:3.3%;"></a><a class="hotspot" href="tel:0517827002" style="left:14%;top:76.4%;width:31%;height:3.3%;"></a><a class="hotspot" href="tel:0515019117" style="left:61%;top:76.4%;width:31%;height:3.3%;"></a><a class="hotspot" href="tel:0511366" style="left:5%;top:87.3%;width:27%;height:3.3%;"></a><a class="hotspot" href="tel:15771366" style="left:37%;top:87.3%;width:27%;height:3.3%;"></a><a class="hotspot" href="tel:0517561893" style="left:69%;top:87.3%;width:27%;height:3.3%;"></a></section><section id="district-traffic" class="page"><img src="./district_traffic.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0518515482" style="left:62%;top:31.6%;width:34%;height:3.2%;"></a><a class="hotspot" href="tel:0805009090" style="left:62%;top:35.2%;width:34%;height:3.2%;"></a><a class="hotspot" href="tel:0516000212" style="left:62%;top:40.7%;width:34%;height:3.2%;"></a><a class="hotspot" href="tel:01064544534" style="left:62%;top:44.3%;width:34%;height:3.2%;"></a><a class="hotspot" href="tel:15445005" style="left:62%;top:50.3%;width:34%;height:3.6%;"></a><a class="hotspot" href="tel:0517035501" style="left:73%;top:57.1%;width:24%;height:3.2%;"></a><a class="hotspot" href="tel:0517027725" style="left:73%;top:60.5%;width:24%;height:3.2%;"></a><a class="hotspot" href="tel:0517907000" style="left:62%;top:67.4%;width:34%;height:3.7%;"></a><a class="hotspot" href="tel:0517800077" style="left:62%;top:75.8%;width:34%;height:3.7%;"></a><a class="hotspot" href="tel:0516205500" style="left:62%;top:84.1%;width:34%;height:3.7%;"></a></section><section id="district-public" class="page"><img src="./district_public.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0516695381" style="left:7%;top:51.7%;width:39%;height:4.4%;"></a><a class="hotspot" href="tel:0517804588" style="left:54%;top:51.7%;width:39%;height:4.4%;"></a><a class="hotspot" href="tel:0517804290" style="left:7%;top:78.3%;width:39%;height:4.4%;"></a><a class="hotspot" href="tel:0517090300" style="left:54%;top:78.3%;width:39%;height:4.4%;"></a></section><section id="district-facilities" class="page"><img src="./district_facilities.png" class="page-image"><button class="hotspot" style="left:1%;top:.3%;width:23%;height:5%;" onclick="showPage('district-main')"></button><a class="hotspot" href="tel:0517451234" style="left:61%;top:31%;width:35%;height:2.8%;"></a><a class="hotspot" href="tel:0517451112" style="left:61%;top:33.8%;width:35%;height:2.8%;"></a><a class="hotspot" href="tel:0517451113" style="left:61%;top:36.6%;width:35%;height:2.8%;"></a><a class="hotspot" href="tel:0517452112" style="left:61%;top:39.4%;width:35%;height:2.8%;"></a><a class="hotspot" href="tel:15770001" style="left:61%;top:46.5%;width:35%;height:3%;"></a><a class="hotspot" href="tel:0517302112" style="left:61%;top:49.8%;width:35%;height:3%;"></a><a class="hotspot" href="tel:0517095600" style="left:61%;top:59%;width:35%;height:3%;"></a><a class="hotspot" href="tel:0517095501" style="left:61%;top:62.3%;width:35%;height:3%;"></a><a class="hotspot" href="tel:0517407300" style="left:61%;top:71.2%;width:35%;height:3.5%;"></a><a class="hotspot" href="tel:0517431974" style="left:61%;top:81.7%;width:35%;height:3.5%;"></a></section><section id="repair" class="page"><img src="./repair.png" class="page-image"><button class="hotspot" style="left:2%;top:.5%;width:21%;height:5%;" onclick="goHome()"></button><a class="hotspot" href="tel:15661228" style="left:5%;top:40.6%;width:27%;height:3.5%;"></a><a class="hotspot" href="tel:15666881" style="left:37%;top:40.6%;width:27%;height:3.5%;"></a><a class="hotspot" href="tel:07088920790" style="left:68%;top:38.8%;width:28%;height:2.8%;"></a><a class="hotspot" href="tel:01020369695" style="left:68%;top:41.5%;width:28%;height:2.8%;"></a><a class="hotspot" href="tel:0518992543" style="left:5%;top:50.3%;width:27%;height:2.7%;"></a><a class="hotspot" href="tel:01065767918" style="left:5%;top:53%;width:27%;height:2.7%;"></a><a class="hotspot" href="tel:0231502964" style="left:37%;top:48.8%;width:27%;height:2.7%;"></a><a class="hotspot" href="tel:0231500199" style="left:37%;top:53%;width:27%;height:2.7%;"></a><a class="hotspot" href="tel:0221635777" style="left:68%;top:50.3%;width:28%;height:2.7%;"></a><a class="hotspot" href="tel:0231502964" style="left:68%;top:53%;width:28%;height:2.7%;"></a><a class="hotspot" href="tel:01038308999" style="left:5%;top:62.4%;width:27%;height:3.3%;"></a><a class="hotspot" href="tel:0515212212" style="left:42%;top:60.4%;width:22%;height:2.7%;"></a><a class="hotspot" href="tel:0517820119" style="left:42%;top:63.4%;width:22%;height:2.7%;"></a><a class="hotspot" href="tel:01046415549" style="left:68%;top:62.4%;width:28%;height:3.3%;"></a><a class="hotspot" href="tel:07086805391" style="left:5%;top:73.5%;width:27%;height:3.3%;"></a><a class="hotspot" href="tel:01038705565" style="left:37%;top:73.5%;width:27%;height:3.3%;"></a><a class="hotspot" href="tel:01065767918" style="left:68%;top:73.5%;width:28%;height:3.3%;"></a><a class="hotspot" href="tel:01093270467" style="left:5%;top:84.2%;width:27%;height:3.3%;"></a><a class="hotspot" href="tel:0518515482" style="left:37%;top:82.7%;width:27%;height:2.7%;"></a><a class="hotspot" href="tel:0805009090" style="left:37%;top:85.5%;width:27%;height:2.7%;"></a><a class="hotspot" href="tel:0516000212" style="left:68%;top:82.7%;width:28%;height:2.7%;"></a><a class="hotspot" href="tel:01064544534" style="left:68%;top:85.5%;width:28%;height:2.7%;"></a></section></div><script>let localImagesLoaded=false,districtImagesLoaded=false;function preloadLocalImages(){if(localImagesLoaded)return;localImagesLoaded=true;["./local_jaesong.png","./local_banyeo.png","./local_jwadong.png","./local_jungdong.png","./local_udong.png","./local_bansong.png","./local_banyeo23.png","./local_banseok.png","./local_songjeong.png"].forEach(src=>{const img=new Image();img.src=src})}function preloadDistrictImages(){if(districtImagesLoaded)return;districtImagesLoaded=true;["./district_office.png","./district_dong.png","./district_health.png","./district_fire.png","./district_support.png","./district_traffic.png","./district_public.png","./district_facilities.png"].forEach(src=>{const img=new Image();img.src=src})}function showPage(pageId){const target=document.getElementById(pageId);if(!target){console.error("페이지를 찾을 수 없습니다:",pageId);return}document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));target.classList.add("active");window.scrollTo(0,0);if(pageId==="local")preloadLocalImages();if(pageId==="district-main")preloadDistrictImages()}function goHome(){showPage("home")}document.querySelectorAll("img").forEach(img=>img.setAttribute("draggable","false"));if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(console.log))}
 
-    target.classList.add("active");
-    window.scrollTo(0,0);
-
-    if(pageId==="local"){
-        preloadLocalImages();
-    }
-
-    if(pageId==="district-main"){
-        preloadDistrictImages();
-    }
-}
-
-function goHome(){
-    showPage("home");
-}
-
-document.querySelectorAll("img").forEach(function(img){
-    img.setAttribute("draggable","false");
-});
-
-if("serviceWorker" in navigator){
-    window.addEventListener("load",function(){
-        navigator.serviceWorker
-        .register("./sw.js")
-        .catch(function(error){
-            console.log("Service Worker error:",error);
-        });
-    });
-}
 /* ===== H-LINK 비밀번호 인증 ===== */
+const HLINK_SUPABASE_URL="https://wikqcnzwnnpejmybnwav.supabase.co";
+const HLINK_PUBLISHABLE_KEY="sb_publishable_hZC-TNEeJxCna2ZAhPTK1w_xSNe5-5w";
+const hlinkPassword=document.getElementById("hlinkPassword");
+const loginButton=document.getElementById("loginButton");
+const loginMessage=document.getElementById("loginMessage");
 
-const HLINK_SUPABASE_URL =
-  "https://wikqcnzwnnpejmybnwav.supabase.co";
+/* 로그인 화면이 떠 있는 동안 홈/주요 메뉴 이미지를 미리 불러옵니다. */
+const HLINK_WARM_IMAGES=[
+  "./home.png",
+  "./departments.png",
+  "./local.png",
+  "./district.png",
+  "./repair.png"
+];
+function warmHlinkImages(){
+  HLINK_WARM_IMAGES.forEach(function(src){
+    const img=new Image();
+    img.decoding="async";
+    img.src=src;
+  });
+}
+if("requestIdleCallback" in window){
+  requestIdleCallback(warmHlinkImages,{timeout:1200});
+}else{
+  setTimeout(warmHlinkImages,200);
+}
 
-const HLINK_PUBLISHABLE_KEY =
-  "sb_publishable_hZC-TNEeJxCna2ZAhPTK1w_xSNe5-5w";
-
-const hlinkPassword = document.getElementById("hlinkPassword");
-const loginButton = document.getElementById("loginButton");
-const loginMessage = document.getElementById("loginMessage");
-
-/* 현재 브라우저를 닫기 전까지 로그인 상태 유지 */
-if (sessionStorage.getItem("hlink_authenticated") === "yes") {
+if(sessionStorage.getItem("hlink_authenticated")==="yes"){
   document.body.classList.add("hlink-authenticated");
 }
 
-async function verifyHlinkPassword() {
-  const password = hlinkPassword.value.trim();
-
-  if (!password) {
-    loginMessage.textContent = "비밀번호를 입력해주세요.";
+async function verifyHlinkPassword(){
+  const password=hlinkPassword.value.trim();
+  if(!password){
+    loginMessage.textContent="비밀번호를 입력해주세요.";
     return;
   }
-
-  loginButton.disabled = true;
-  loginButton.textContent = "확인 중...";
-  loginMessage.textContent = "";
-
-  try {
-    const response = await fetch(
-      HLINK_SUPABASE_URL +
-        "/rest/v1/rpc/verify_hlink_password",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": HLINK_PUBLISHABLE_KEY
-        },
-        body: JSON.stringify({
-          input_password: password
-        })
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("인증 서버 오류");
-    }
-
-    const isValid = await response.json();
-
-    if (isValid === true) {
-      sessionStorage.setItem(
-        "hlink_authenticated",
-        "yes"
-      );
-
-      document.body.classList.add(
-        "hlink-authenticated"
-      );
-
-      hlinkPassword.value = "";
-      loginMessage.textContent = "";
-
-      window.scrollTo(0, 0);
-    } else {
-      loginMessage.textContent =
-        "비밀번호가 올바르지 않습니다.";
-
+  loginButton.disabled=true;
+  loginButton.textContent="확인 중...";
+  loginMessage.textContent="";
+  try{
+    const response=await fetch(HLINK_SUPABASE_URL+"/rest/v1/rpc/verify_hlink_password",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":HLINK_PUBLISHABLE_KEY
+      },
+      body:JSON.stringify({input_password:password})
+    });
+    if(!response.ok) throw new Error("인증 서버 오류");
+    const isValid=await response.json();
+    if(isValid===true){
+      sessionStorage.setItem("hlink_authenticated","yes");
+      document.body.classList.add("hlink-authenticated");
+      hlinkPassword.value="";
+      loginMessage.textContent="";
+      window.scrollTo(0,0);
+    }else{
+      loginMessage.textContent="비밀번호가 올바르지 않습니다.";
       hlinkPassword.select();
     }
-
-  } catch (error) {
+  }catch(error){
     console.error(error);
-
-    loginMessage.textContent =
-      "접속을 확인할 수 없습니다. 잠시 후 다시 시도해주세요.";
-  } finally {
-    loginButton.disabled = false;
-    loginButton.textContent = "접속하기";
+    loginMessage.textContent="접속을 확인할 수 없습니다. 잠시 후 다시 시도해주세요.";
+  }finally{
+    loginButton.disabled=false;
+    loginButton.textContent="접속하기";
   }
 }
-
-loginButton.addEventListener(
-  "click",
-  verifyHlinkPassword
-);
-
-hlinkPassword.addEventListener(
-  "keydown",
-  function(event) {
-    if (event.key === "Enter") {
-      verifyHlinkPassword();
-    }
-  }
-);
-</script>
-
-</body>
-</html>
+loginButton.addEventListener("click",verifyHlinkPassword);
+hlinkPassword.addEventListener("keydown",function(event){
+  if(event.key==="Enter") verifyHlinkPassword();
+});
+</script></body></html>

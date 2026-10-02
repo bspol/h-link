@@ -2,18 +2,18 @@
   "name": "H-LINK 해운대경찰서 스마트 업무지원",
   "short_name": "H-LINK",
   "description": "해운대경찰서 스마트 업무지원 플랫폼",
-  "start_url": "/h-link/",
-  "scope": "/h-link/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#06479e",
+  "theme_color": "#073b8c",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

@@ -1,11 +1,11 @@
-const CACHE_NAME = "h-link-v3";
+const CACHE_NAME = "hlink-v2";
 
-const CORE_FILES = [
+const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.json",
   "./icon-512.png",
-
+  "./chamsuri.png",
   "./home.png",
   "./departments.png",
   "./local.png",
@@ -13,112 +13,76 @@ const CORE_FILES = [
   "./repair.png"
 ];
 
-
-/* 설치할 때 핵심 화면을 미리 저장 */
 self.addEventListener("install", event => {
-
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(CORE_FILES))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(APP_SHELL);
+    })
   );
 
   self.skipWaiting();
-
 });
 
-
-/* 예전 캐시만 삭제 */
 self.addEventListener("activate", event => {
-
   event.waitUntil(
     caches.keys().then(keys => {
-
       return Promise.all(
         keys
           .filter(key => key !== CACHE_NAME)
           .map(key => caches.delete(key))
       );
-
     })
   );
 
   self.clients.claim();
-
 });
 
-
-/* 이미지 = 캐시 우선
-   HTML = 인터넷 우선 */
 self.addEventListener("fetch", event => {
-
   const request = event.request;
 
-  if (request.method !== "GET") {
-    return;
-  }
+  if (request.method !== "GET") return;
 
   const url = new URL(request.url);
 
+  if (url.origin !== self.location.origin) return;
 
-  /* PNG / JPG / WEBP / 아이콘은 캐시 우선 */
-  if (
-    request.destination === "image" ||
-    /\.(png|jpg|jpeg|webp)$/i.test(url.pathname)
-  ) {
-
+  if (request.mode === "navigate") {
     event.respondWith(
+      fetch(request)
+        .then(response => {
+          const copy = response.clone();
 
-      caches.match(request)
-        .then(cached => {
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, copy);
+          });
 
-          if (cached) {
-            return cached;
-          }
-
-          return fetch(request)
-            .then(response => {
-
-              if (
-                response &&
-                response.status === 200
-              ) {
-
-                const copy = response.clone();
-
-                caches.open(CACHE_NAME)
-                  .then(cache => {
-                    cache.put(request, copy);
-                  });
-
-              }
-
-              return response;
-
-            });
-
+          return response;
         })
-
+        .catch(() => {
+          return caches.match("./index.html");
+        })
     );
 
     return;
   }
 
-
-  /* HTML/JS 등은 최신 버전 우선 */
   event.respondWith(
+    caches.match(request).then(cachedResponse => {
+      const networkFetch = fetch(request)
+        .then(response => {
+          if (response && response.status === 200) {
+            const copy = response.clone();
 
-    fetch(request)
-      .then(response => {
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(request, copy);
+            });
+          }
 
-        return response;
+          return response;
+        })
+        .catch(() => cachedResponse);
 
-      })
-      .catch(() => {
-
-        return caches.match(request);
-
-      })
-
+      return cachedResponse || networkFetch;
+    })
   );
-
 });

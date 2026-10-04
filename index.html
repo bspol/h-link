@@ -512,7 +512,7 @@ function goHome(){
 const homeSearchInput=document.getElementById("homeSearchInput");
 const homeSearchButton=document.getElementById("homeSearchButton");
 
-const HLINK_SEARCH_ROUTES=[const HLINK_SEARCH_ROUTES=[
+const HLINK_SEARCH_ROUTES=[
   /* 경찰서 부서 */
   {page:"department-audit",keys:["청문","감사","인권","청문감사","청문감사인권"]},
   {page:"department-prevention",keys:["범죄예방","범예","범죄예방대응","범죄예방대응과"]},
@@ -541,53 +541,19 @@ const HLINK_SEARCH_ROUTES=[const HLINK_SEARCH_ROUTES=[
   {page:"district-dong",keys:["행정복지센터","주민센터","동사무소","행정복지"]},
   {page:"district-health",keys:["보건소","의료기관","병원","보건"]},
   {page:"district-fire",keys:["소방","소방서","119"]},
-
-  {page:"district-support",keys:[
-    "지원기관","상담기관","지원센터",
-    "응급","주취자","주취","주취해소","주취해소센터",
-    "정신","정신건강","정신질환",
-    "중독","알코올","마약","치매",
-    "일시보호","아동보호","가정폭력","성폭력"
-  ]},
-
-  {page:"district-traffic",keys:[
-    "교통기관","교통공단","교통유관기관",
-    "신호등","신호기","신호기운영실","신호고장","교통정보"
-  ]},
-
-  {page:"district-public",keys:[
-    "공공기관","공공",
-    "징수","징수계","지검","검찰","검찰청",
-    "벌금","벌과금","벌금징수","당직실"
-  ]},
-
-  {page:"district-facilities",keys:[
-    "시설기관","시설관리","시설",
-    "백화점","보안실","안전실",
-    "신세계","신세계백화점",
-    "롯데","롯데백화점",
-    "nc백화점","엔씨백화점",
-    "벡스코","bexco","누리마루","apec하우스"
-  ]},
+  {page:"district-support",keys:["지원기관","상담기관","지원센터","응급","주취자","주취","주취해소","주취해소센터","정신","정신건강","정신질환","중독","알코올","마약","치매","일시보호","아동보호","가정폭력","성폭력"]},
+  {page:"district-traffic",keys:["교통기관","교통공단","교통유관기관","신호등","신호기","신호기운영실","신호고장","교통정보"]},
+  {page:"district-public",keys:["공공기관","공공","징수","징수계","지검","검찰","검찰청","벌금","벌과금","벌금징수","당직실"]},
+  {page:"district-facilities",keys:["시설기관","시설관리","시설","백화점","보안실","안전실","신세계","신세계백화점","롯데","롯데백화점","nc백화점","엔씨백화점","벡스코","bexco","누리마루","apec하우스"]},
 
   /* 고장·수리 */
-  {page:"repair",keys:[
-    "고장","수리",
-    "프린터","프린터수리",
-    "pc","컴퓨터",
-    "무전기",
-    "순찰차","순찰캠","순찰차캠",
-    "블랙박스","영상장비","카메라",
-    "경광등","사이렌",
-    "통신","시설고장","장비수리"
-  ]},
+  {page:"repair",keys:["고장","수리","프린터","프린터수리","pc","컴퓨터","무전기","순찰차","순찰캠","순찰차캠","블랙박스","영상장비","카메라","경광등","사이렌","통신","시설고장","장비수리"]},
 
   /* 큰 분류 */
   {page:"departments",keys:["경찰서","경찰서부서","부서","업무연락처"]},
   {page:"local",keys:["지역관서","지구대","파출소"]},
   {page:"district-main",keys:["유관기관","유관","기관연락처"]},
   {page:"repair",keys:["고장수리"]}
-];
 ];
 
 function normalizeHlinkSearch(value){
